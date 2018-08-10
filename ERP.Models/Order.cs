@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ERP.Dtos
+namespace ERP.Models
 {
     public class Order : BaseModel
     {

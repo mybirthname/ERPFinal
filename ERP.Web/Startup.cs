@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ERP.Data;
+using ERP.Models;
 
 namespace ERP.Web
 {
@@ -33,13 +35,37 @@ namespace ERP.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDefaultIdentity<IdentityUser>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddSingleton<SqlDatabaseOptions>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.Configure<SqlDatabaseOptions>(option =>
+            {
+                option.ConnectionString = Configuration.GetConnectionString("SqlServerConnectionString");
+            });
+
+            services
+                .AddIdentity<User, IdentityRole>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ERPContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password = new PasswordOptions()
+                {
+                    RequiredLength = 4,
+                    RequiredUniqueChars = 1,
+                    RequireLowercase = true,
+                    RequireDigit = false,
+                    RequireUppercase = false,
+                    RequireNonAlphanumeric = false
+                };
+
+                // options.SignIn.RequireConfirmedEmail = true;
+            });
+
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +90,10 @@ namespace ERP.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "area",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace ERP.Dtos
+namespace ERP.Models
 {
     public abstract class BaseModel
     {

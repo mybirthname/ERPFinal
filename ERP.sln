@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Web", "ERP.Web\ERP.Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Data", "ERP.Data\ERP.Data.csproj", "{E8B19061-1B51-4CAE-AB17-6BB4E0E8E65A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Dtos", "ERP.Models\ERP.Dtos.csproj", "{9D5CB13E-12D7-4F1D-905A-E437301003FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Models", "ERP.Models\ERP.Models.csproj", "{9D5CB13E-12D7-4F1D-905A-E437301003FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
