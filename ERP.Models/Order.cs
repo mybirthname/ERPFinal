@@ -17,12 +17,8 @@ namespace ERP.Models
 
         public decimal AmountNet { get; set; }
 
-        public int SupplierOrganizationID { get; set; }
+        public int? SupplierOrganizationID { get; set; }
 
-        public Organization SupplierOrganization { get; set; }
-
-        public int SupplierID { get; set; }
-
-        public Supplier Supplier { get; set; }
+        public int? SupplierID { get; set; }
     }
 }

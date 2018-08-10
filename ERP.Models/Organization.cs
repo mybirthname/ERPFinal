@@ -10,7 +10,6 @@ namespace ERP.Models
 
         public int ID { get; set; }
 
-        [Required]
         public int ProviderOrganizationID { get; set; }
 
         [Required]
@@ -56,7 +55,5 @@ namespace ERP.Models
 
         [Timestamp]
         public byte[] RowVersion { get; set; }
-
-        public Organization ProviderOrganization { get; set; }
     }
 }

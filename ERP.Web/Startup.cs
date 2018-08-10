@@ -35,12 +35,12 @@ namespace ERP.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddSingleton<SqlDatabaseOptions>();
-
             services.Configure<SqlDatabaseOptions>(option =>
             {
                 option.ConnectionString = Configuration.GetConnectionString("SqlServerConnectionString");
             });
+
+            services.AddDbContext<ERPContext>();
 
             services
                 .AddIdentity<User, IdentityRole>()

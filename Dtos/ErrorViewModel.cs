@@ -1,6 +1,6 @@
 using System;
 
-namespace ERP.Web.Models
+namespace ERP.Dtos
 {
     public class ErrorViewModel
     {

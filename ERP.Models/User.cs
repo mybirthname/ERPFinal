@@ -31,8 +31,6 @@ namespace ERP.Models
 
         public int OrganizationID { get; set; }
 
-        public Organization Organization { get; set; }
-
         [StringLength(50)]
         public string Remark { get; set; }
 

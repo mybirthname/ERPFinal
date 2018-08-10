@@ -3,8 +3,7 @@
     "outputFileName": "wwwroot/css/globalCss.min.css",
     "inputFiles": [
       "node_modules/bootstrap/dist/css/bootstrap.min.css",
-      "node_modules/font-awesome/css/font-awesome.css",
-      "CSS/site.css"
+      "node_modules/font-awesome/css/font-awesome.min.css"
     ]
   },
   {

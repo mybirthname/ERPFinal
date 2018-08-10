@@ -31,9 +31,5 @@ namespace ERP.Models
         [Timestamp]
         public byte[] RowVersion { get; set; }
 
-        public User Users { get; set; }
-
-        public Organization Organization { get; set; }
-
     }
 }
