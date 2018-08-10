@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Web", "ERP.Web\ERP.Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Data", "ERP.Data\ERP.Data.csproj", "{E8B19061-1B51-4CAE-AB17-6BB4E0E8E65A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Dtos", "ERP.Models\ERP.Dtos.csproj", "{9D5CB13E-12D7-4F1D-905A-E437301003FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E8B19061-1B51-4CAE-AB17-6BB4E0E8E65A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8B19061-1B51-4CAE-AB17-6BB4E0E8E65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8B19061-1B51-4CAE-AB17-6BB4E0E8E65A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5CB13E-12D7-4F1D-905A-E437301003FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5CB13E-12D7-4F1D-905A-E437301003FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5CB13E-12D7-4F1D-905A-E437301003FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5CB13E-12D7-4F1D-905A-E437301003FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
