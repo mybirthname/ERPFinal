@@ -1,20 +1,30 @@
-﻿using System;
+﻿using Common.ModelConstants;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ERP.Models
 {
     public class Order : BaseModel
     {
+
+        public Order()
+        {
+            AmountNet = 0;
+        }
+
         [Required]
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string Title { get; set; }
 
-        [StringLength(2000)]
+        [StringLength(SolutionConstants.DescriptionLength)]
         public string Description { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime SendDate { get; set; }
 
         public int Status { get; set; }
 
+        [Range(0, int.MaxValue)]
         public decimal AmountNet { get; set; }
 
         public int? SupplierOrganizationID { get; set; }

@@ -13,6 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ERP.Data;
 using ERP.Models;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace ERP.Web
 {
@@ -28,6 +31,8 @@ namespace ERP.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalization(options=> options.ResourcesPath = "Resources");
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -81,6 +86,25 @@ namespace ERP.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("bg-BG"),
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("bg-BG"),
+
+                SupportedUICultures = supportedCultures,
+                SupportedCultures = supportedCultures,
+                RequestCultureProviders = new List<IRequestCultureProvider>()
+                {
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider()
+                }
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

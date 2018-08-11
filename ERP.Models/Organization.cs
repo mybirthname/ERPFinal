@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.ModelConstants;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -12,45 +13,45 @@ namespace ERP.Models
 
         public int ProviderOrganizationID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string NrIntern { get; set; }
-
-        [StringLength(50)]
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string Title { get; set; }
 
-        [StringLength(2000)]
+        [StringLength(SolutionConstants.DescriptionLength)]
         public string Description { get; set; }
 
-        [StringLength(50)]
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string Country { get; set; }
 
-        [StringLength(50)]
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string City { get; set; }
 
-        [StringLength(50)]
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string Street { get; set; }
 
-        [StringLength(10)]
+        [StringLength(SolutionConstants.ZipCodeLength)]
         public string ZipCode { get; set; }
 
         [EmailAddress]
-        [StringLength(50)]
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string Email { get; set; }
 
         [Phone]
-        [StringLength(20)]
+        [StringLength(SolutionConstants.PhoneLength)]
         public string Phone { get; set; }
 
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string CreateBy { get; set; }
 
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string UpdateBy { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime CreateDate { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime UpdateDate { get; set; }
 
-        [StringLength(50)]
+        [StringLength(SolutionConstants.StandardFieldLength)]
         public string Remark { get; set; }
 
         [Timestamp]

@@ -3,4 +3,9 @@
 }
 <h2>@ViewData["Title"]</h2>
 
+@using ERP.Web.Controllers
+@inject IStringLocalizer<HomeController> localizer
+
 <p>Use this page to detail your site's privacy policy.</p>
+
+@localizer["Title"]
