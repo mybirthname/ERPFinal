@@ -117,10 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Полица за поверителност</value>
+  <data name="Customer" xml:space="preserve">
+    <value>Customers</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>МАРТИН</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ERPSystem" xml:space="preserve">
+    <value>ERP System</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Invoices</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="OrderProcess" xml:space="preserve">
+    <value>Order Process</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="StockReceipt" xml:space="preserve">
+    <value>Stock Receipts</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="CookieBanner" xml:space="preserve">
+    <value>Cookie Banner</value>
+  </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Cookie Policy</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorDesc" xml:space="preserve">
+    <value>An error occurred while processing your request.</value>
+  </data>
+  <data name="LearnMore" xml:space="preserve">
+    <value>Learn More</value>
+  </data>
+  <data name="RequestID" xml:space="preserve">
+    <value>Request ID:</value>
   </data>
 </root>

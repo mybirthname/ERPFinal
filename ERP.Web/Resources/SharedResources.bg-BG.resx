@@ -117,10 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Полица за поверителност</value>
+  <data name="Customer" xml:space="preserve">
+    <value>Клиенти</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>МАРТИН</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Редакция</value>
+  </data>
+  <data name="ERPSystem" xml:space="preserve">
+    <value>ЕРП Система</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Фактури</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Поръчки</value>
+  </data>
+  <data name="OrderProcess" xml:space="preserve">
+    <value>Поръчков процес</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Търсене</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Изход</value>
+  </data>
+  <data name="StockReceipt" xml:space="preserve">
+    <value>Разписки за наличност</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Доставчици</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Потребители</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Приемам</value>
+  </data>
+  <data name="CookieBanner" xml:space="preserve">
+    <value>Банер на бисквитките</value>
+  </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Полица на бисквитките</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Грешка</value>
+  </data>
+  <data name="ErrorDesc" xml:space="preserve">
+    <value>Грешка при обработване на вашата заявка</value>
+  </data>
+  <data name="LearnMore" xml:space="preserve">
+    <value>Научи повече</value>
+  </data>
+  <data name="RequestID" xml:space="preserve">
+    <value>ID на заявката: </value>
   </data>
 </root>

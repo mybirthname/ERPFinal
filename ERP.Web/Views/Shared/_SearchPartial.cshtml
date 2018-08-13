@@ -1,11 +1,14 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
 <form class="form-inline my-2 my-lg-0">
     <div class="input-group mb-3">
-        <input name="searchTerm" id="searchTerm" class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input name="searchTerm" id="searchTerm" class="form-control" type="search" placeholder="@sharedLocalizer["Search"]" aria-label="Search">
         <div class="input-group-prepend">
-            <button class="btn btn-outline my-2 my-sm-0" type="submit" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-search"></span></button>
+            <button class="btn btn-outline my-2 my-sm-0" type="submit" asp-area="" asp-controller="@(ViewContext.RouteData.Values["Controller"])" asp-action="Search"><span class="fa fa-search"></span></button>
         </div>
 
     </div>

@@ -3,12 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ERP System</title>
+    <title>ERP System</title>
 
     <link rel="stylesheet" href="~/css/globalCss.min.css" />
     <link rel="stylesheet" href="~/css/main.css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,24 +24,24 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Order Process
+                        @sharedLocalizer["OrderProcess"]
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Order</a>
+                        <a class="dropdown-item" href="#">@sharedLocalizer["Order"]</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Stock Receipt</a>
+                        <a class="dropdown-item" href="#">@sharedLocalizer["StockReceipt"]</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Invoice</a>
+                        <a class="dropdown-item" href="#">@sharedLocalizer["Invoice"]</a>
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Suppliers<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">@sharedLocalizer["Supplier"]<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Customers<span class="sr-only"></span></a>
+                    <a class="nav-link" href="#">@sharedLocalizer["Customer"]<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Users</a>
+                    <a class="nav-link" href="#">@sharedLocalizer["User"]</a>
                 </li>
 
 
@@ -58,7 +61,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - ERP System</p>
+            <p>&copy; @DateTime.Now.Year - @sharedLocalizer["ERPSystem"]</p>
         </footer>
     </div>
 

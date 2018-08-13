@@ -14,22 +14,15 @@ namespace ERP.Web.Controllers
     public class HomeController : Controller
     {
 
-        private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(IStringLocalizer<HomeController> localizer)
+        public HomeController()
         {
-            _localizer = localizer;
 
         }
 
 
         public IActionResult Index()
         {
-            //Response.Cookies.Append(
-            //    CookieRequestCultureProvider.DefaultCookieName,
-            //    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("en-US")));
-
-            var a =_localizer["Title"];
             return View();
         }
 
