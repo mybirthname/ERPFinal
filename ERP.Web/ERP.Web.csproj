@@ -15,6 +15,7 @@
     <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\ERP.Data\ERP.Data.csproj" />
     <ProjectReference Include="..\ERP.Models\ERP.Models.csproj" />
+    <ProjectReference Include="..\ERP.Services\ERP.Services.csproj" />
   </ItemGroup>
 
 </Project>

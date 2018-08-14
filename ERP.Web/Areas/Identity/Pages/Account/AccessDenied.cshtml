@@ -4,7 +4,10 @@
     ViewData["Title"] = "Access denied";
 }
 
+@inject IStringLocalizer<AccessDeniedModel> localizer
+
+
 <header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
+    <h1 class="text-danger">@localizer["AccessDenied"]</h1>
+    <p class="text-danger">@localizer["AccessDeniedDesc"]</p>
 </header>

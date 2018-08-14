@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Data", "ERP.Data\ERP.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Models", "ERP.Models\ERP.Models.csproj", "{9D5CB13E-12D7-4F1D-905A-E437301003FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtos", "Dtos\Dtos.csproj", "{BC554190-EFCB-4538-88CE-C43AE3615357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtos", "Dtos\Dtos.csproj", "{BC554190-EFCB-4538-88CE-C43AE3615357}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{DFE5F73F-0556-489A-8895-2FE347CE13B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{DFE5F73F-0556-489A-8895-2FE347CE13B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Services", "ERP.Services\ERP.Services.csproj", "{DCCCCFB1-6949-42E7-97A4-B65314A4A17C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{DFE5F73F-0556-489A-8895-2FE347CE13B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFE5F73F-0556-489A-8895-2FE347CE13B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFE5F73F-0556-489A-8895-2FE347CE13B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCCCCFB1-6949-42E7-97A4-B65314A4A17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCCCCFB1-6949-42E7-97A4-B65314A4A17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCCCCFB1-6949-42E7-97A4-B65314A4A17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCCCCFB1-6949-42E7-97A4-B65314A4A17C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

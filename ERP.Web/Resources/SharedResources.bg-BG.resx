@@ -177,4 +177,73 @@
   <data name="RequestID" xml:space="preserve">
     <value>ID на заявката: </value>
   </data>
+  <data name="Bulgaria" xml:space="preserve">
+    <value>България</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Потвърждение на Емайл</value>
+  </data>
+  <data name="ConfirmEmailDesc" xml:space="preserve">
+    <value>Благодаря Ви за потвърждението на емайл адреса ви.</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Език</value>
+  </data>
+  <data name="AccountLockout" xml:space="preserve">
+    <value>Акаунта е заключен, моля опитайте по-късно.</value>
+  </data>
+  <data name="CheckEmail" xml:space="preserve">
+    <value>Проверете емайла си за промяна на паролата ви.</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Вкарайте своя емайл.</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забравихте паролата си ?</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Изход</value>
+  </data>
+  <data name="LogOutDesc" xml:space="preserve">
+    <value>Успешно излезнахте от приложението.</value>
+  </data>
+  <data name="ResetPasswordConf" xml:space="preserve">
+    <value>Потвърждение за сменена парола</value>
+  </data>
+  <data name="ResetPasswordConfDesc1" xml:space="preserve">
+    <value>Вашата парола беше сменена. Моля </value>
+  </data>
+  <data name="ResetPasswordConfDesc2" xml:space="preserve">
+    <value>натиснете тук за да влезнете отново</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Потвърждаване</value>
+  </data>
+  <data name="ChangeAccountSettings" xml:space="preserve">
+    <value>Сменете вашите настроики</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Смяна на паролата</value>
+  </data>
+  <data name="ManageAccount" xml:space="preserve">
+    <value>Управление на акаунта</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Персонална информация</value>
+  </data>
+  <data name="UpdatePassword" xml:space="preserve">
+    <value>Промяна на паролата</value>
+  </data>
+  <data name="DeleteData" xml:space="preserve">
+    <value>Изтриването на тези данни ще премахне вашият акаунт и няма да може да се възстанови</value>
+  </data>
+  <data name="DeleteDataAction" xml:space="preserve">
+    <value>Триене на данните и затваряне на акаунта</value>
+  </data>
+  <data name="DownloadData" xml:space="preserve">
+    <value>Изтеглете вашите данни</value>
+  </data>
 </root>

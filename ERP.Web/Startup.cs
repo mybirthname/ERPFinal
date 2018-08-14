@@ -16,6 +16,9 @@ using ERP.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ERP.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ERP.Web
 {
@@ -31,7 +34,7 @@ namespace ERP.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLocalization(options=> options.ResourcesPath = "Resources");
+            AddLocalizationService(services);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -48,8 +51,12 @@ namespace ERP.Web
             services.AddDbContext<ERPContext>();
 
             services
-                .AddIdentity<User, IdentityRole>()
-                .AddDefaultUI()
+                .AddIdentity<User, IdentityRole>(options=>
+                {
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                    options.Lockout.MaxFailedAccessAttempts = 5;
+                })
+
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ERPContext>();
 
@@ -57,19 +64,26 @@ namespace ERP.Web
             {
                 options.Password = new PasswordOptions()
                 {
-                    RequiredLength = 4,
+                    RequiredLength = 6,
                     RequiredUniqueChars = 1,
                     RequireLowercase = true,
                     RequireDigit = false,
                     RequireUppercase = false,
                     RequireNonAlphanumeric = false
                 };
-
-                // options.SignIn.RequireConfirmedEmail = true;
             });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+            });
+
+            services.AddSingleton<IEmailSender, EmailService>();
+            services.Configure<SendGridEmailOptions>(this.Configuration.GetSection("EmailSettings"));
 
             services
                 .AddMvc()
+                .AddDataAnnotationsLocalization()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -87,24 +101,7 @@ namespace ERP.Web
                 app.UseHsts();
             }
             
-            var supportedCultures = new[]
-            {
-                new CultureInfo("en-US"),
-                new CultureInfo("bg-BG"),
-            };
-
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("bg-BG"),
-
-                SupportedUICultures = supportedCultures,
-                SupportedCultures = supportedCultures,
-                RequestCultureProviders = new List<IRequestCultureProvider>()
-                {
-                    new QueryStringRequestCultureProvider(),
-                    new CookieRequestCultureProvider()
-                }
-            });
+            app.UseRequestLocalization();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -122,6 +119,29 @@ namespace ERP.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void AddLocalizationService(IServiceCollection services)
+        {
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("bg-BG"),
+            };
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("bg-BG");
+                options.SupportedUICultures = supportedCultures;
+                options.SupportedCultures = supportedCultures;
+                options.RequestCultureProviders = new List<IRequestCultureProvider>()
+                {
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider()
+                };
+            });
+
         }
     }
 }

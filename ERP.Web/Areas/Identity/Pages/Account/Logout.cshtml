@@ -4,7 +4,10 @@
     ViewData["Title"] = "Log out";
 }
 
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
+
 <header>
-    <h1>@ViewData["Title"]</h1>
-    <p>You have successfully logged out of the application.</p>
+    <h1>@sharedLocalizer["LogOut"]</h1>
+    <p>@sharedLocalizer["LogOutDesc"]</p>
 </header>
