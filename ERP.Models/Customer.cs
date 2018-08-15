@@ -8,29 +8,29 @@ namespace ERP.Models
 {
     public class Customer: BaseModel
     {
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Title { get; set; }
 
-        [StringLength(SolutionConstants.DescriptionLength)]
+        [StringLength(FieldLengthConstants.DescriptionLength)]
         public string Description { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Country { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string City { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Street { get; set; }
 
-        [StringLength(SolutionConstants.ZipCodeLength)]
+        [StringLength(FieldLengthConstants.ZipCodeLength)]
         public string ZipCode { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         [EmailAddress]
         public string Email { get; set; }
 
-        [StringLength(SolutionConstants.PhoneLength)]
+        [StringLength(FieldLengthConstants.PhoneLength)]
         [Phone]
         public string Phone { get; set; }
     }

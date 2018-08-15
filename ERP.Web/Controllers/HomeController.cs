@@ -10,9 +10,11 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using ERP.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ERP.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
 

@@ -9,7 +9,7 @@ namespace ERP.Models
     public class StockReceiptPosition : BaseModel
     {
         [Required]
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Title { get; set; }
 
         [Required]
@@ -24,7 +24,7 @@ namespace ERP.Models
 
         public StockReceipt StockReceipt { get; set; }
 
-        [StringLength(SolutionConstants.DescriptionLength)]
+        [StringLength(FieldLengthConstants.DescriptionLength)]
         public string Description { get; set; }
     }
 }

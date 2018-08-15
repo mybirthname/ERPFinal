@@ -3,21 +3,24 @@
 @{
     ViewData["Title"] = "Personal Data";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    Layout = "/Views/Shared/_Layout.cshtml";
+
 }
 
-<h4>@ViewData["Title"]</h4>
+<h4>@sharedLocalizer["PersonalData"]</h4>
+@inject IStringLocalizer<SharedResources> sharedLocalizer
 
 <div class="row">
     <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+        <p>@sharedLocalizer["DataDesc"]</p>
         <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+            <strong>@sharedLocalizer["DataDeletion"]</strong>
         </p>
         <form asp-page="DownloadPersonalData" method="post" class="form-group">
-            <button class="btn btn-default" type="submit">Download</button>
+            <button class="btn btn-default" type="submit">@sharedLocalizer["Download"]</button>
         </form>
         <p>
-            <a asp-page="DeletePersonalData" class="btn btn-default">Delete</a>
+            <a asp-page="DeletePersonalData" class="btn btn-danger">@sharedLocalizer["Delete"]</a>
         </p>
     </div>
 </div>

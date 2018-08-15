@@ -6,8 +6,8 @@
 @inject IStringLocalizer<SharedResources> sharedLocalizer
 
 
-<ul class="nav nav-pills nav-stacked">
-    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password" asp-page="./ChangePassword">@sharedLocalizer["Password"]</a></li>
+<ul >
+    <li class="btn btn-link"><a id="change-password" asp-page="./ChangePassword">@sharedLocalizer["Password"]</a></li>
 
-    <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)"><a asp-page="./PersonalData">@sharedLocalizer["PersonalData"]</a></li>
+    <li class="btn btn-link"><a asp-page="./PersonalData">@sharedLocalizer["PersonalData"]</a></li>
 </ul>

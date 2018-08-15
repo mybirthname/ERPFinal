@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
-using Dtos;
+using Dtos.User;
 
 namespace ERP.Web.Areas.Identity.Pages.Account
 {

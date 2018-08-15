@@ -11,15 +11,15 @@ namespace ERP.Models
         public int ID { get; set; }
 
         [Required]
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string NrIntern { get; set; }
 
         public int UserID { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string CreateBy { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string UpdateBy { get; set; }
 
         [DataType(DataType.Date)]
@@ -30,7 +30,7 @@ namespace ERP.Models
 
         public int OrganizationID { get; set; }
 
-        [StringLength(SolutionConstants.RemarkLength)]
+        [StringLength(FieldLengthConstants.RemarkLength)]
         public string Remark { get; set; }
 
         [Timestamp]

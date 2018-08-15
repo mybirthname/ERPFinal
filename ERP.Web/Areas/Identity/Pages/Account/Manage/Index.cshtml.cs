@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Dtos.User;
 using ERP.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -28,26 +29,14 @@ namespace ERP.Web.Areas.Identity.Pages.Account.Manage
             _emailSender = emailSender;
         }
 
-        public string Username { get; set; }
-
         public bool IsEmailConfirmed { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public ManageAccountInputModel Input { get; set; }
 
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-
-            [Phone]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
-        }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -61,13 +50,13 @@ namespace ERP.Web.Areas.Identity.Pages.Account.Manage
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
 
-            Input = new InputModel
+            Input = new ManageAccountInputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
-            };
+                PhoneNumber = phoneNumber,
+                Username = userName
+        };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 

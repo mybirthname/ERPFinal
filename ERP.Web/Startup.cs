@@ -76,6 +76,7 @@ namespace ERP.Web
             services.ConfigureApplicationCookie(options =>
             {
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+                options.LoginPath = "/Identity/Account/Login";
             });
 
             services.AddSingleton<IEmailSender, EmailService>();

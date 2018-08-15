@@ -10,22 +10,22 @@ namespace ERP.Models
     {
         public int ID { get; set; }
 
-        [StringLength(SolutionConstants.CounterLength)]
+        [StringLength(FieldLengthConstants.CounterLength)]
         public string OrderCounter { get; set; }
 
-        [StringLength(SolutionConstants.CounterLength)]
+        [StringLength(FieldLengthConstants.CounterLength)]
         public string SupplierCounter { get; set; }
 
-        [StringLength(SolutionConstants.CounterLength)]
+        [StringLength(FieldLengthConstants.CounterLength)]
         public string UserCounter { get; set; }
 
-        [StringLength(SolutionConstants.CounterLength)]
+        [StringLength(FieldLengthConstants.CounterLength)]
         public string CustomerCounter { get; set; }
 
-        [StringLength(SolutionConstants.CounterLength)]
+        [StringLength(FieldLengthConstants.CounterLength)]
         public string InvoiceCounter { get; set; }
 
-        [StringLength(SolutionConstants.CounterLength)]
+        [StringLength(FieldLengthConstants.CounterLength)]
         public string StockReceiptCounter { get; set; }
 
     }

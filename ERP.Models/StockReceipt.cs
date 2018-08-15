@@ -15,10 +15,10 @@ namespace ERP.Models
         }
 
         [Required]
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Title { get; set; }
 
-        [StringLength(SolutionConstants.DescriptionLength)]
+        [StringLength(FieldLengthConstants.DescriptionLength)]
         public string Description { get; set; }
 
         [DataType(DataType.Date)]

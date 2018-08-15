@@ -246,4 +246,43 @@
   <data name="DownloadData" xml:space="preserve">
     <value>Изтеглете вашите данни</value>
   </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Въведете вашият емайл</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Промяна</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Промени парола</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>Променете вашата парола</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="DataDeletion" xml:space="preserve">
+    <value>Триенето на акаунта ви ще бъде трайно и няма да може да се възстанови</value>
+  </data>
+  <data name="DataDesc" xml:space="preserve">
+    <value>Вашият профил съдържа лични данни, които сте ни предоставили. Тази страница дава възможноста да ги изтеглите или изтриете</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Триене</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Теглене</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Администрация</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Новини</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>Потребителски роли</value>
+  </data>
 </root>

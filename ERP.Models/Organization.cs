@@ -13,36 +13,36 @@ namespace ERP.Models
 
         public int ProviderOrganizationID { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Title { get; set; }
 
-        [StringLength(SolutionConstants.DescriptionLength)]
+        [StringLength(FieldLengthConstants.DescriptionLength)]
         public string Description { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Country { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string City { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Street { get; set; }
 
-        [StringLength(SolutionConstants.ZipCodeLength)]
+        [StringLength(FieldLengthConstants.ZipCodeLength)]
         public string ZipCode { get; set; }
 
         [EmailAddress]
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Email { get; set; }
 
         [Phone]
-        [StringLength(SolutionConstants.PhoneLength)]
+        [StringLength(FieldLengthConstants.PhoneLength)]
         public string Phone { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string CreateBy { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string UpdateBy { get; set; }
 
         [DataType(DataType.Date)]
@@ -51,7 +51,7 @@ namespace ERP.Models
         [DataType(DataType.Date)]
         public DateTime UpdateDate { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Remark { get; set; }
 
         [Timestamp]

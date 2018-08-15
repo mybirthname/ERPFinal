@@ -9,19 +9,19 @@ namespace ERP.Models
 {
     public class User :IdentityUser
     {
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string FirstName { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string LastName { get; set; }
 
-        [StringLength(SolutionConstants.DescriptionLength)]
+        [StringLength(FieldLengthConstants.DescriptionLength)]
         public string Description { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string CreateBy { get; set; }
 
-        [StringLength(SolutionConstants.StandardFieldLength)]
+        [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string UpdateBy { get; set; }
 
         [DataType(DataType.Date)]
@@ -32,10 +32,5 @@ namespace ERP.Models
 
         public int OrganizationID { get; set; }
 
-        [StringLength(SolutionConstants.CultureLength)]
-        public string Culture { get; set; }
-
-        [StringLength(SolutionConstants.CultureLength)]
-        public string CultureUI { get; set; }
     }
 }

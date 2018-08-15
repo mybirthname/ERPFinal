@@ -67,10 +67,6 @@ namespace ERP.Data
 
                 LastName = "User",
 
-                Culture = "EN",
-
-                CultureUI = "EN",
-
                 CreateBy = "Automatic Seed Function",
 
                 UpdateBy = "Automatic Seed Function",

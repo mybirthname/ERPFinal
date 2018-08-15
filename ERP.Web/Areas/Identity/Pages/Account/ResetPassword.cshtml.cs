@@ -8,6 +8,7 @@ using ERP.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Dtos.User;
 
 namespace ERP.Web.Areas.Identity.Pages.Account
 {
@@ -22,7 +23,7 @@ namespace ERP.Web.Areas.Identity.Pages.Account
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public ResetPasswordInputModel Input { get; set; }
 
 
         public IActionResult OnGet(string code = null)
@@ -33,7 +34,7 @@ namespace ERP.Web.Areas.Identity.Pages.Account
             }
             else
             {
-                Input = new InputModel
+                Input = new ResetPasswordInputModel
                 {
                     Code = code
                 };
@@ -68,24 +69,6 @@ namespace ERP.Web.Areas.Identity.Pages.Account
             return Page();
         }
 
-        public class InputModel
-        {
-            [Required(ErrorMessage = "EmailRequired")]
-            [EmailAddress]
-            public string Email { get; set; }
-
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-
-            public string Code { get; set; }
-        }
 
     }
 
