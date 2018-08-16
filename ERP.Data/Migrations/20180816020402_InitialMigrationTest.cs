@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ERP.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrationTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,6 +23,39 @@ namespace ERP.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: true),
+                    LastName = table.Column<string>(maxLength: 50, nullable: true),
+                    Description = table.Column<string>(maxLength: 2000, nullable: true),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    OrganizationID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
@@ -30,12 +63,12 @@ namespace ERP.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     NrIntern = table.Column<string>(maxLength: 50, nullable: false),
                     UserID = table.Column<int>(nullable: false),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: false),
                     UpdateDate = table.Column<DateTime>(nullable: false),
                     OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Title = table.Column<string>(maxLength: 50, nullable: true),
                     Description = table.Column<string>(maxLength: 2000, nullable: true),
@@ -43,8 +76,8 @@ namespace ERP.Data.Migrations
                     City = table.Column<string>(maxLength: 50, nullable: true),
                     Street = table.Column<string>(maxLength: 50, nullable: true),
                     ZipCode = table.Column<string>(maxLength: 10, nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true)
+                    Email = table.Column<string>(maxLength: 50, nullable: true),
+                    Phone = table.Column<string>(maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -59,14 +92,14 @@ namespace ERP.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     NrIntern = table.Column<string>(maxLength: 50, nullable: false),
                     UserID = table.Column<int>(nullable: false),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: false),
                     UpdateDate = table.Column<DateTime>(nullable: false),
                     OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Title = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 2000, nullable: true),
                     SendDate = table.Column<DateTime>(nullable: false),
                     Status = table.Column<int>(nullable: false),
@@ -86,7 +119,6 @@ namespace ERP.Data.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ProviderOrganizationID = table.Column<int>(nullable: false),
-                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: true),
                     Description = table.Column<string>(maxLength: 2000, nullable: true),
                     Country = table.Column<string>(maxLength: 50, nullable: true),
@@ -95,8 +127,8 @@ namespace ERP.Data.Migrations
                     ZipCode = table.Column<string>(maxLength: 10, nullable: true),
                     Email = table.Column<string>(maxLength: 50, nullable: true),
                     Phone = table.Column<string>(maxLength: 20, nullable: true),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: false),
                     UpdateDate = table.Column<DateTime>(nullable: false),
                     Remark = table.Column<string>(maxLength: 50, nullable: true),
@@ -115,12 +147,12 @@ namespace ERP.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     NrIntern = table.Column<string>(maxLength: 50, nullable: false),
                     UserID = table.Column<int>(nullable: false),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: false),
                     UpdateDate = table.Column<DateTime>(nullable: false),
                     OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Title = table.Column<string>(maxLength: 50, nullable: true),
                     Description = table.Column<string>(maxLength: 2000, nullable: true),
@@ -154,185 +186,6 @@ namespace ERP.Data.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OrderPositions",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
-                    UserID = table.Column<int>(nullable: false),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: false),
-                    OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Title = table.Column<string>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
-                    OrderID = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(maxLength: 2000, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderPositions", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_OrderPositions_Orders_OrderID",
-                        column: x => x.OrderID,
-                        principalTable: "Orders",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StockReceipts",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
-                    UserID = table.Column<int>(nullable: false),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: false),
-                    OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Description = table.Column<string>(maxLength: 2000, nullable: true),
-                    SendDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    AmountNet = table.Column<decimal>(nullable: false),
-                    OrderID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StockReceipts", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_StockReceipts_Orders_OrderID",
-                        column: x => x.OrderID,
-                        principalTable: "Orders",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: true),
-                    LastName = table.Column<string>(maxLength: 50, nullable: true),
-                    Description = table.Column<string>(maxLength: 2000, nullable: true),
-                    Phone = table.Column<string>(maxLength: 20, nullable: true),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: false),
-                    OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_Organizations_OrganizationID",
-                        column: x => x.OrganizationID,
-                        principalTable: "Organizations",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Invoices",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
-                    UserID = table.Column<int>(nullable: false),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: false),
-                    OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Description = table.Column<string>(maxLength: 2000, nullable: true),
-                    SendDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    AmountNet = table.Column<decimal>(nullable: false),
-                    SupplierOrganizationID = table.Column<int>(nullable: false),
-                    OrderID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Invoices", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Invoices_Orders_OrderID",
-                        column: x => x.OrderID,
-                        principalTable: "Orders",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Invoices_Organizations_SupplierOrganizationID",
-                        column: x => x.SupplierOrganizationID,
-                        principalTable: "Organizations",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StockReceiptPositions",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
-                    UserID = table.Column<int>(nullable: false),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: false),
-                    OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
-                    StockReceiptID = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(maxLength: 2000, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StockReceiptPositions", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_StockReceiptPositions_StockReceipts_StockReceiptID",
-                        column: x => x.StockReceiptID,
-                        principalTable: "StockReceipts",
-                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -422,6 +275,143 @@ namespace ERP.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderPositions",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
+                    UserID = table.Column<int>(nullable: false),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    OrganizationID = table.Column<int>(nullable: false),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    OrderID = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(maxLength: 2000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderPositions", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_OrderPositions_Orders_OrderID",
+                        column: x => x.OrderID,
+                        principalTable: "Orders",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StockReceipts",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
+                    UserID = table.Column<int>(nullable: false),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    OrganizationID = table.Column<int>(nullable: false),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 2000, nullable: true),
+                    SendDate = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
+                    AmountNet = table.Column<decimal>(nullable: false),
+                    OrderID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StockReceipts", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_StockReceipts_Orders_OrderID",
+                        column: x => x.OrderID,
+                        principalTable: "Orders",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Invoices",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
+                    UserID = table.Column<int>(nullable: false),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    OrganizationID = table.Column<int>(nullable: false),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 2000, nullable: true),
+                    SendDate = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
+                    AmountNet = table.Column<decimal>(nullable: false),
+                    SupplierOrganizationID = table.Column<int>(nullable: false),
+                    OrderID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invoices", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Invoices_Orders_OrderID",
+                        column: x => x.OrderID,
+                        principalTable: "Orders",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Invoices_Organizations_SupplierOrganizationID",
+                        column: x => x.SupplierOrganizationID,
+                        principalTable: "Organizations",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StockReceiptPositions",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    NrIntern = table.Column<string>(maxLength: 50, nullable: false),
+                    UserID = table.Column<int>(nullable: false),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    OrganizationID = table.Column<int>(nullable: false),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    StockReceiptID = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(maxLength: 2000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StockReceiptPositions", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_StockReceiptPositions_StockReceipts_StockReceiptID",
+                        column: x => x.StockReceiptID,
+                        principalTable: "StockReceipts",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "InvoicePositions",
                 columns: table => new
                 {
@@ -429,12 +419,12 @@ namespace ERP.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     NrIntern = table.Column<string>(maxLength: 50, nullable: false),
                     UserID = table.Column<int>(nullable: false),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
+                    CreateBy = table.Column<string>(maxLength: 50, nullable: true),
+                    UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
                     CreateDate = table.Column<DateTime>(nullable: false),
                     UpdateDate = table.Column<DateTime>(nullable: false),
                     OrganizationID = table.Column<int>(nullable: false),
-                    Remark = table.Column<string>(maxLength: 50, nullable: true),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Quantity = table.Column<int>(nullable: false),
@@ -452,6 +442,26 @@ namespace ERP.Data.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "065548f8-a5a6-4e2a-a30f-000b8d109ed2", "9796dc6b-226c-48af-9efa-31134e00f084", "SuperAdmin", "SUPERADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateBy", "CreateDate", "Description", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "OrganizationID", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdateBy", "UpdateDate", "UserName" },
+                values: new object[] { "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", 0, "85a5d039-bdaa-4964-bf5f-aec0408afd92", "Automatic Seed Function", new DateTime(2018, 8, 16, 5, 4, 2, 412, DateTimeKind.Local), null, "martin.stanchev87@gmail.com", true, "Martin", "Stanchev", false, null, "MARTIN.STANCHEV87@GMAIL.COM", "MARTIN.STANCHEV87@GMAIL.COM", 1, "AQAAAAEAACcQAAAAEBHNaY9qF7ln+2McreBev6OSMKV8NXg8ZyLWmNJkDgDWG7ZT4V9mx83OSoVStKnJuQ==", null, false, "743d9ad8-7b2b-4db9-a753-67393b4417eb", false, "Automatic Seed Function", new DateTime(2018, 8, 16, 5, 4, 2, 414, DateTimeKind.Local), "martin.stanchev87@gmail.com" });
+
+            migrationBuilder.InsertData(
+                table: "Organizations",
+                columns: new[] { "ID", "City", "Country", "CreateBy", "CreateDate", "Description", "Email", "Phone", "ProviderOrganizationID", "Remark", "RowVersion", "Street", "Title", "UpdateBy", "UpdateDate", "ZipCode" },
+                values: new object[] { 1, "Sofia", "Bulgaria", "Automatic Seed Function", new DateTime(2018, 8, 16, 5, 4, 2, 427, DateTimeKind.Local), "Organization of the company which provides ", "ContactCompanyEmail@CompanyDomain.com", "+359 888 123 456", 0, "Values are filled automatically", null, null, "Provider Organization", "Automatic Seed Function", new DateTime(2018, 8, 16, 5, 4, 2, 427, DateTimeKind.Local), "1000" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", "065548f8-a5a6-4e2a-a30f-000b8d109ed2" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -491,11 +501,6 @@ namespace ERP.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_OrganizationID",
-                table: "AspNetUsers",
-                column: "OrganizationID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InvoicePositions_InvoiceID",

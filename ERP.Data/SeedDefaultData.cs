@@ -1,4 +1,5 @@
 ﻿using ERP.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,8 +8,33 @@ namespace ERP.Data
 {
     public class SeedDefaultData
     {
+        private static string UserID { get; set; } = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39";
+        private static string Email { get; set; } = "martin.stanchev87@gmail.com";
+        private static string RoleID { get; set; } = "065548f8-a5a6-4e2a-a30f-000b8d109ed2";
+
+        public static Role GetRoleData()
+        {
+            return new Role()
+            {
+                Id = RoleID,
+                Name = "SuperAdmin",
+                NormalizedName = "SUPERADMIN"
+            };
+        }
+
+        public static UserRole GetUserRoleData()
+        {
+            return new UserRole()
+            {
+                RoleId = RoleID,
+                UserId = UserID
+            };
+
+        }
+
         public static Organization GetDefaultOrganizationData ()
         {
+
             return new Organization()
             {
                 ID = 1,
@@ -43,29 +69,27 @@ namespace ERP.Data
 
         public static User GetDefaultSAUser()
         {
-            return new User()
+            var user = new User()
             {
-                Id= Guid.NewGuid().ToString(),
+                Id = UserID,
 
-                UserName = "defaultUser@CompanyDomain.com",
+                UserName = Email,
 
-                NormalizedEmail = "DEFAULTUSER@COMPANYDOMAIN.COM",
+                NormalizedEmail = Email.ToUpper(),
 
-                Email = "defaultUser@CompanyDomain.com",
+                Email = Email,
 
-                NormalizedUserName = "DEFAULTUSER@COMPANYDOMAIN.COM",
+                NormalizedUserName = Email.ToUpper(),
 
                 EmailConfirmed = true,
 
-                PasswordHash = "AQAAAAEAACcQAAAAEGM4W32GEuzZrBKnX02YJWuTmukzR+y3V8Uklky6jZ3eGuVk+i1r7LFCZzNaSs31Mg==",
+                OrganizationID = 1,
 
-                SecurityStamp = "FWHMMPZT5JBVI233XP7CYJMNTMQBPAMK",
+                SecurityStamp = Guid.NewGuid().ToString(),
 
-                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                FirstName = "Martin",
 
-                FirstName = "Default",
-
-                LastName = "User",
+                LastName = "Stanchev",
 
                 CreateBy = "Automatic Seed Function",
 
@@ -76,6 +100,12 @@ namespace ERP.Data
                 UpdateDate = DateTime.Now,
             };
 
+            var password = new PasswordHasher<User>();
+            user.PasswordHash = password.HashPassword(user, "admin123");
+
+            return user;
+
         }
+
     }
 }

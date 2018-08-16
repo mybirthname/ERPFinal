@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ERP.Models
 {
-    public class User :IdentityUser
+    public class User :IdentityUser<string>
     {
         [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string FirstName { get; set; }

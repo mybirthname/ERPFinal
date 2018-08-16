@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ERP.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ERP.Web
 {
@@ -51,14 +52,13 @@ namespace ERP.Web
             services.AddDbContext<ERPContext>();
 
             services
-                .AddIdentity<User, IdentityRole>(options=>
+                .AddIdentity<User, Role>(options =>
                 {
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                     options.Lockout.MaxFailedAccessAttempts = 5;
                 })
-
-                .AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<ERPContext>();
+                .AddEntityFrameworkStores<ERPContext>()
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {

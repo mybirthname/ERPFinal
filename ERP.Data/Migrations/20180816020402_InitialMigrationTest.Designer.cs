@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Data.Migrations
 {
     [DbContext(typeof(ERPContext))]
-    [Migration("20180811004146_AddUserCulture")]
-    partial class AddUserCulture
+    [Migration("20180816020402_InitialMigrationTest")]
+    partial class InitialMigrationTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,14 +33,16 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Country")
                         .HasMaxLength(50);
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<string>("Description")
                         .HasMaxLength(2000);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .HasMaxLength(50);
 
                     b.Property<string>("NrIntern")
                         .IsRequired()
@@ -48,10 +50,11 @@ namespace ERP.Data.Migrations
 
                     b.Property<int>("OrganizationID");
 
-                    b.Property<string>("Phone");
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20);
 
                     b.Property<string>("Remark")
-                        .HasMaxLength(50);
+                        .HasMaxLength(500);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -63,7 +66,8 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -85,7 +89,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<decimal>("AmountNet");
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
@@ -101,7 +106,7 @@ namespace ERP.Data.Migrations
                     b.Property<int>("OrganizationID");
 
                     b.Property<string>("Remark")
-                        .HasMaxLength(50);
+                        .HasMaxLength(500);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -117,7 +122,8 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -138,7 +144,8 @@ namespace ERP.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
@@ -158,7 +165,7 @@ namespace ERP.Data.Migrations
                     b.Property<int>("Quantity");
 
                     b.Property<string>("Remark")
-                        .HasMaxLength(50);
+                        .HasMaxLength(500);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -168,7 +175,8 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -189,7 +197,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<decimal>("AmountNet");
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
@@ -203,7 +212,7 @@ namespace ERP.Data.Migrations
                     b.Property<int>("OrganizationID");
 
                     b.Property<string>("Remark")
-                        .HasMaxLength(50);
+                        .HasMaxLength(500);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -218,9 +227,11 @@ namespace ERP.Data.Migrations
                     b.Property<int?>("SupplierOrganizationID");
 
                     b.Property<string>("Title")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -237,7 +248,8 @@ namespace ERP.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
@@ -257,16 +269,18 @@ namespace ERP.Data.Migrations
                     b.Property<int>("Quantity");
 
                     b.Property<string>("Remark")
-                        .HasMaxLength(50);
+                        .HasMaxLength(500);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Title")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -291,7 +305,8 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Country")
                         .HasMaxLength(50);
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
@@ -299,10 +314,6 @@ namespace ERP.Data.Migrations
                         .HasMaxLength(2000);
 
                     b.Property<string>("Email")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("NrIntern")
-                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("Phone")
@@ -323,7 +334,8 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -333,6 +345,58 @@ namespace ERP.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Organizations");
+
+                    b.HasData(
+                        new { ID = 1, City = "Sofia", Country = "Bulgaria", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 16, 5, 4, 2, 427, DateTimeKind.Local), Description = "Organization of the company which provides ", Email = "ContactCompanyEmail@CompanyDomain.com", Phone = "+359 888 123 456", ProviderOrganizationID = 0, Remark = "Values are filled automatically", Title = "Provider Organization", UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 16, 5, 4, 2, 427, DateTimeKind.Local), ZipCode = "1000" }
+                    );
+                });
+
+            modelBuilder.Entity("ERP.Models.Role", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new { Id = "065548f8-a5a6-4e2a-a30f-000b8d109ed2", ConcurrencyStamp = "9796dc6b-226c-48af-9efa-31134e00f084", Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
+                    );
+                });
+
+            modelBuilder.Entity("ERP.Models.RoleClaim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType");
+
+                    b.Property<string>("ClaimValue");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
                 });
 
             modelBuilder.Entity("ERP.Models.StockReceipt", b =>
@@ -343,7 +407,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<decimal>("AmountNet");
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
@@ -359,7 +424,7 @@ namespace ERP.Data.Migrations
                     b.Property<int>("OrganizationID");
 
                     b.Property<string>("Remark")
-                        .HasMaxLength(50);
+                        .HasMaxLength(500);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -373,7 +438,8 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -392,7 +458,8 @@ namespace ERP.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
@@ -410,7 +477,7 @@ namespace ERP.Data.Migrations
                     b.Property<int>("Quantity");
 
                     b.Property<string>("Remark")
-                        .HasMaxLength(50);
+                        .HasMaxLength(500);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -422,7 +489,8 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -447,7 +515,8 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Country")
                         .HasMaxLength(50);
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
@@ -467,7 +536,7 @@ namespace ERP.Data.Migrations
                         .HasMaxLength(20);
 
                     b.Property<string>("Remark")
-                        .HasMaxLength(50);
+                        .HasMaxLength(500);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -479,7 +548,8 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(50);
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -503,13 +573,10 @@ namespace ERP.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("CreateBy");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
-
-                    b.Property<string>("Culture");
-
-                    b.Property<string>("CultureUI");
 
                     b.Property<string>("Description")
                         .HasMaxLength(2000);
@@ -539,22 +606,16 @@ namespace ERP.Data.Migrations
 
                     b.Property<string>("PasswordHash");
 
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20);
-
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<string>("UpdateBy");
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -572,53 +633,13 @@ namespace ERP.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new { Id = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", AccessFailedCount = 0, ConcurrencyStamp = "85a5d039-bdaa-4964-bf5f-aec0408afd92", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 16, 5, 4, 2, 412, DateTimeKind.Local), Email = "martin.stanchev87@gmail.com", EmailConfirmed = true, FirstName = "Martin", LastName = "Stanchev", LockoutEnabled = false, NormalizedEmail = "MARTIN.STANCHEV87@GMAIL.COM", NormalizedUserName = "MARTIN.STANCHEV87@GMAIL.COM", OrganizationID = 1, PasswordHash = "AQAAAAEAACcQAAAAEBHNaY9qF7ln+2McreBev6OSMKV8NXg8ZyLWmNJkDgDWG7ZT4V9mx83OSoVStKnJuQ==", PhoneNumberConfirmed = false, SecurityStamp = "743d9ad8-7b2b-4db9-a753-67393b4417eb", TwoFactorEnabled = false, UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 16, 5, 4, 2, 414, DateTimeKind.Local), UserName = "martin.stanchev87@gmail.com" }
+                    );
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType");
-
-                    b.Property<string>("ClaimValue");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("ERP.Models.UserClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -638,7 +659,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("ERP.Models.UserLogin", b =>
                 {
                     b.Property<string>("LoginProvider");
 
@@ -656,7 +677,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("ERP.Models.UserRole", b =>
                 {
                     b.Property<string>("UserId");
 
@@ -667,9 +688,13 @@ namespace ERP.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new { UserId = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", RoleId = "065548f8-a5a6-4e2a-a30f-000b8d109ed2" }
+                    );
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("ERP.Models.UserToken", b =>
                 {
                     b.Property<string>("UserId");
 
@@ -713,6 +738,14 @@ namespace ERP.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("ERP.Models.RoleClaim", b =>
+                {
+                    b.HasOne("ERP.Models.Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("ERP.Models.StockReceipt", b =>
                 {
                     b.HasOne("ERP.Models.Order", "Order")
@@ -729,15 +762,7 @@ namespace ERP.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("ERP.Models.UserClaim", b =>
                 {
                     b.HasOne("ERP.Models.User")
                         .WithMany()
@@ -745,7 +770,7 @@ namespace ERP.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("ERP.Models.UserLogin", b =>
                 {
                     b.HasOne("ERP.Models.User")
                         .WithMany()
@@ -753,9 +778,9 @@ namespace ERP.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("ERP.Models.UserRole", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
+                    b.HasOne("ERP.Models.Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -766,7 +791,7 @@ namespace ERP.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("ERP.Models.UserToken", b =>
                 {
                     b.HasOne("ERP.Models.User")
                         .WithMany()

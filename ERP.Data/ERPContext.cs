@@ -1,4 +1,5 @@
 ﻿using ERP.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace ERP.Data
 {
-    public class ERPContext: IdentityDbContext<User>
+    public class ERPContext: IdentityDbContext<User, Role, string, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
         public SqlDatabaseOptions SqlDbOptions { get; set; }
 
@@ -26,6 +27,8 @@ namespace ERP.Data
         public DbSet<StockReceiptPosition> StockReceiptPositions { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
+        public DbSet<IdentityUserClaim<Guid>> IdentityUserClaims { get; set; } //-> bug which is workarounded with this line https://github.com/aspnet/Identity/issues/1802
+
         protected override void OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -36,5 +39,14 @@ namespace ERP.Data
             base.OnConfiguring(optionsBuilder);
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>().HasData(SeedDefaultData.GetDefaultSAUser());
+            builder.Entity<Organization>().HasData(SeedDefaultData.GetDefaultOrganizationData());
+            builder.Entity<Role>().HasData(SeedDefaultData.GetRoleData());
+            builder.Entity<UserRole>().HasData(SeedDefaultData.GetUserRoleData());
+
+            base.OnModelCreating(builder);
+        }
     }
 }

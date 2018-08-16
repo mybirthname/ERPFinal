@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dtos.User;
 using ERP.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
