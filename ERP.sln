@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Models", "ERP.Models\ER
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtos", "Dtos\Dtos.csproj", "{BC554190-EFCB-4538-88CE-C43AE3615357}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{DFE5F73F-0556-489A-8895-2FE347CE13B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Common", "Common\ERP.Common.csproj", "{DFE5F73F-0556-489A-8895-2FE347CE13B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Services", "ERP.Services\ERP.Services.csproj", "{DCCCCFB1-6949-42E7-97A4-B65314A4A17C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Services", "ERP.Services\ERP.Services.csproj", "{DCCCCFB1-6949-42E7-97A4-B65314A4A17C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

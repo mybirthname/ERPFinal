@@ -1,0 +1,65 @@
+﻿@page
+@model ERP.Web.Areas.Administration.Pages.News.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].NrIntern)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].CreateBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].Remark)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.News) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NrIntern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

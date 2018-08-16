@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.ModelConstants
+namespace ERP.Common.ModelConstants
 {
     public static class FieldLengthConstants
     {
@@ -12,7 +12,7 @@ namespace Common.ModelConstants
 
         public const int ZipCodeLength = 10;
 
-        public const int DescriptionLength = 2000;
+        public const int DescriptionLength = 4000;
 
         public const int PhoneLength = 20;
 

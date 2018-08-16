@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using ERP.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using AutoMapper;
 
 namespace ERP.Web
 {
@@ -82,8 +83,16 @@ namespace ERP.Web
             services.AddSingleton<IEmailSender, EmailService>();
             services.Configure<SendGridEmailOptions>(this.Configuration.GetSection("EmailSettings"));
 
+            services.AddAutoMapper();
+
+
             services
                 .AddMvc()
+                .AddRazorPagesOptions(options=>
+                {
+                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                    options.Conventions.AuthorizeAreaFolder("Administration", "/News");
+                })
                 .AddDataAnnotationsLocalization()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

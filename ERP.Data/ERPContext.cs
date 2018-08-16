@@ -26,6 +26,7 @@ namespace ERP.Data
         public DbSet<StockReceipt> StockReceipts { get; set; }
         public DbSet<StockReceiptPosition> StockReceiptPositions { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<News> News { get; set; }
 
         public DbSet<IdentityUserClaim<Guid>> IdentityUserClaims { get; set; } //-> bug which is workarounded with this line https://github.com/aspnet/Identity/issues/1802
 
