@@ -33,8 +33,5 @@ namespace ERP.Models
         [StringLength(FieldLengthConstants.RemarkLength)]
         public string Remark { get; set; }
 
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
-
     }
 }

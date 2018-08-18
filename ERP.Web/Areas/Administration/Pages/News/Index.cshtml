@@ -1,8 +1,9 @@
 ﻿@page
-@model ERP.Web.Areas.Administration.Pages.News.IndexModel
+
+
+@model IndexModel
 
 @{
-    ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
@@ -10,56 +11,28 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+
+
+
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.News[0].Title)
+                @Html.DisplayNameFor(model => model.InputNews[0].NrIntern)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.News[0].Description)
+                @Html.DisplayNameFor(model => model.InputNews[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.News[0].NrIntern)
+                @Html.DisplayNameFor(model => model.InputNews[0].CreateBy)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.News[0].CreateBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.News[0].CreateDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.News[0].Remark)
+                @Html.DisplayNameFor(model => model.InputNews[0].CreateDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.News) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NrIntern)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Remark)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @Html.DisplayForModel("NewsList")
     </tbody>
 </table>

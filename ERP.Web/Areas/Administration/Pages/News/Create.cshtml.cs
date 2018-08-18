@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ERP.Data;
 using ERP.Models;
 using Dtos.Administration.News;
+using ERP.Services.Administration;
+using ERP.Services.Interfaces;
 
 namespace ERP.Web.Areas.Administration.Pages.News
 {
     public class CreateModel : PageModel
     {
-        private readonly ERP.Data.ERPContext _context;
+        private readonly INewsService _service;
 
-        public CreateModel(ERP.Data.ERPContext context)
+        public CreateModel(INewsService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public IActionResult OnGet()
@@ -31,12 +33,9 @@ namespace ERP.Web.Areas.Administration.Pages.News
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
-            {
                 return Page();
-            }
 
-            //_context.News.Add(News);
-            //await _context.SaveChangesAsync();
+            await _service.CreateNewsRecord(InputModel);
 
             return RedirectToPage("./Index");
         }

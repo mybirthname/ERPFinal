@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id}"
 @model EditModel
 
 @{
@@ -12,38 +12,8 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="InputModel.Title" class="control-label"></label>
-                <input asp-for="InputModel.Title" class="form-control" />
-                <span asp-validation-for="InputModel.Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InputModel.Description" class="control-label"></label>
-                <input asp-for="InputModel.Description" class="form-control" />
-                <span asp-validation-for="InputModel.Description" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="InputModel.ID" />
-            <div class="form-group">
-                <label asp-for="InputModel.NrIntern" class="control-label"></label>
-                <input asp-for="InputModel.NrIntern" class="form-control" />
-                <span asp-validation-for="InputModel.NrIntern" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InputModel.CreateBy" class="control-label"></label>
-                <input asp-for="InputModel.CreateBy" class="form-control" />
-                <span asp-validation-for="InputModel.CreateBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InputModel.CreateDate" class="control-label"></label>
-                <input asp-for="InputModel.CreateDate" class="form-control" />
-                <span asp-validation-for="InputModel.CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InputModel.Remark" class="control-label"></label>
-                <input asp-for="InputModel.Remark" class="form-control" />
-                <span asp-validation-for="InputModel.Remark" class="text-danger"></span>
-            </div>
+            @Html.EditorForModel("NewsEdit")
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>

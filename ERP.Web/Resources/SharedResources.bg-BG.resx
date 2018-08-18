@@ -285,4 +285,7 @@
   <data name="UserRoles" xml:space="preserve">
     <value>Потребителски роли</value>
   </data>
+  <data name="_ProfileUpdated" xml:space="preserve">
+    <value>Вашият профил беше обновен</value>
+  </data>
 </root>

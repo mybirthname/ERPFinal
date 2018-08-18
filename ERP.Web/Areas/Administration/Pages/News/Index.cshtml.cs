@@ -5,26 +5,34 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ERP.Data;
 using ERP.Models;
 using Dtos.Administration.News;
+using ERP.Services.Interfaces;
 
 namespace ERP.Web.Areas.Administration.Pages.News
 {
     public class IndexModel : PageModel
     {
-        private readonly ERPContext _context;
 
-        public IndexModel(ERP.Data.ERPContext context)
+        private readonly INewsService _newsService;
+
+        public IndexModel(INewsService newsService)
         {
-            _context = context;
+            _newsService = newsService;
         }
 
-        public IList<NewsInputModel> News { get;set; }
+        public List<ERP.Models.News> InputNews { get; set; }
 
         public async Task OnGetAsync()
         {
-            var news = await _context.News.ToListAsync();
+            InputNews = await _newsService.GetAllNewsRecords();
         }
+
+        public async Task OnPostDelete(int id)
+        {
+            await _newsService.DeleteRecord(id);
+            InputNews = await _newsService.GetAllNewsRecords();
+        }
+
     }
 }

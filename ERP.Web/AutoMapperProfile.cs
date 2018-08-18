@@ -11,7 +11,7 @@ namespace Common
     {
         public AutoMapperProfile()
         {
-            this.CreateMap<NewsInputModel, News>();
+            this.CreateMap<NewsInputModel, News>().ReverseMap();
         }
     }
 }

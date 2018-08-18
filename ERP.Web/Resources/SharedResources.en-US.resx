@@ -282,4 +282,7 @@
   <data name="UserRoles" xml:space="preserve">
     <value>UserRoles</value>
   </data>
+  <data name="_ProfileUpdated" xml:space="preserve">
+    <value>Your profile has been updated</value>
+  </data>
 </root>

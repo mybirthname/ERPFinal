@@ -1,0 +1,11 @@
+﻿@model EditModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="InputModel.ID" />
+
+<form-control-text-box asp-for="@Model.InputModel.NrIntern"></form-control-text-box>
+<form-control-text-box asp-for="@Model.InputModel.Title"></form-control-text-box>
+<form-control-text-area asp-for="@Model.InputModel.Description"></form-control-text-area>
+<form-control-text-box asp-for="@Model.InputModel.Remark"></form-control-text-box>
+
+

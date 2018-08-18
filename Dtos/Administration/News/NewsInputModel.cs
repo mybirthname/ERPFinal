@@ -25,12 +25,6 @@ namespace Dtos.Administration.News
         [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Title { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime CreateDate { get; set; }
-
-        [StringLength(FieldLengthConstants.StandardFieldLength)]
-        public string CreateBy { get; set; }
-
         [StringLength(FieldLengthConstants.RemarkLength)]
         [Display(Name = "_Remark")]
         public string Remark { get; set; }

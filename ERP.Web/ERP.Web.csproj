@@ -16,10 +16,20 @@
     <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\ERP.Data\ERP.Data.csproj" />
     <ProjectReference Include="..\ERP.Models\ERP.Models.csproj" />
+    <ProjectReference Include="..\ERP.RazorLibrary\ERP.RazorLibrary.csproj" />
     <ProjectReference Include="..\ERP.Services\ERP.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Areas\Administration\Pages\DisplayTemplates\NewsList.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Administration\Pages\EditorTemplates\NewsCreate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Administration\Pages\EditorTemplates\NewsEdit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\Administration\Pages\_Layout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

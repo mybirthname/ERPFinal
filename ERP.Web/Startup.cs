@@ -21,6 +21,8 @@ using ERP.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using AutoMapper;
+using ERP.Services.Administration;
+using ERP.Services.Interfaces;
 
 namespace ERP.Web
 {
@@ -52,27 +54,7 @@ namespace ERP.Web
 
             services.AddDbContext<ERPContext>();
 
-            services
-                .AddIdentity<User, Role>(options =>
-                {
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                    options.Lockout.MaxFailedAccessAttempts = 5;
-                })
-                .AddEntityFrameworkStores<ERPContext>()
-                .AddDefaultTokenProviders();
-
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password = new PasswordOptions()
-                {
-                    RequiredLength = 6,
-                    RequiredUniqueChars = 1,
-                    RequireLowercase = true,
-                    RequireDigit = false,
-                    RequireUppercase = false,
-                    RequireNonAlphanumeric = false
-                };
-            });
+            AddIdentityServices(services);
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -80,11 +62,7 @@ namespace ERP.Web
                 options.LoginPath = "/Identity/Account/Login";
             });
 
-            services.AddSingleton<IEmailSender, EmailService>();
-            services.Configure<SendGridEmailOptions>(this.Configuration.GetSection("EmailSettings"));
-
-            services.AddAutoMapper();
-
+            AddCustomServices(services);
 
             services
                 .AddMvc()
@@ -96,6 +74,7 @@ namespace ERP.Web
                 .AddDataAnnotationsLocalization()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -129,6 +108,41 @@ namespace ERP.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void AddIdentityServices(IServiceCollection services)
+        {
+            services
+                .AddIdentity<User, Role>(options =>
+                {
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                    options.Lockout.MaxFailedAccessAttempts = 5;
+                })
+                .AddEntityFrameworkStores<ERPContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password = new PasswordOptions()
+                {
+                    RequiredLength = 6,
+                    RequiredUniqueChars = 1,
+                    RequireLowercase = true,
+                    RequireDigit = false,
+                    RequireUppercase = false,
+                    RequireNonAlphanumeric = false
+                };
+            });
+        }
+
+        private void AddCustomServices(IServiceCollection services)
+        {
+            services.AddSingleton<IEmailSender, EmailService>();
+            services.Configure<SendGridEmailOptions>(this.Configuration.GetSection("EmailSettings"));
+
+            services.AddAutoMapper();
+            services.AddScoped<INewsService, NewsService>();
+
         }
 
         private void AddLocalizationService(IServiceCollection services)

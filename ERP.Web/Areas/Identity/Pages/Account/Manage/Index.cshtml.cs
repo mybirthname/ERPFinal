@@ -98,8 +98,8 @@ namespace ERP.Web.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            await _signInManager.RefreshSignInAsync(user); 
+             StatusMessage = "_ProfileUpdated";
             return RedirectToPage();
         }
 

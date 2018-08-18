@@ -1,0 +1,35 @@
+﻿@model IndexModel
+
+@foreach (var item in Model.InputNews)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NrIntern)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td style="padding:1px; border:0px;">
+                        <a asp-page="./Edit" asp-route-id="@item.ID" class="btn btn-info">Edit</a>
+                    </td>
+                    <td style="padding:1px; border:0px;">
+                        <form method="post">
+                            <input name="id" id="id" value="@item.ID" type="hidden" />
+                            <button type="submit" asp-page="Index" class="btn btn-danger" asp-page-handler="Delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+}
+
