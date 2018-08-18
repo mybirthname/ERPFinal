@@ -3,31 +3,37 @@ using Dtos.Administration.News;
 using ERP.Data;
 using ERP.Models;
 using ERP.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ERP.Services.Administration
 {
     public class NewsService: BaseEFService, INewsService
     {
-        public NewsService(ERPContext dbContext, IMapper mapper)
-            :base(dbContext, mapper)
-        {
 
+        public NewsService(ERPContext dbContext, IMapper mapper, IHttpContextAccessor httpContextAccessor, DateTimeService dateTimeService)
+            :base(dbContext, mapper, httpContextAccessor, dateTimeService)
+        {
         }
 
         public async Task<List<News>> GetAllNewsRecords()
         {
-            var news = await DbContext.News.ToListAsync();
+            var userSession = GetUserSession();
+
+            var news = await DbContext.News.Where(x=>x.OrganizationID == userSession.OrganizationID && x.Deleted == 0).ToListAsync();
 
             return news;
         }
 
         public async Task CreateNewsRecord(NewsInputModel model)
         {
+
             var instance = this.Mapper.Map<News>(model);
 
             await DbContext.News.AddAsync(instance);
@@ -36,6 +42,7 @@ namespace ERP.Services.Administration
 
         public async Task<NewsInputModel> GetNewsByID(int id)
         {
+            
             var news = await DbContext.News.FirstOrDefaultAsync(m => m.ID == id);
 
             var instance = this.Mapper.Map<NewsInputModel>(news);
@@ -58,7 +65,9 @@ namespace ERP.Services.Administration
             if (news == null)
                 return;
 
-            DbContext.News.Remove(news);
+            news.Deleted = 1;
+
+            DbContext.News.Update(news);
             await DbContext.SaveChangesAsync();
            
         }

@@ -288,4 +288,13 @@
   <data name="_ProfileUpdated" xml:space="preserve">
     <value>Вашият профил беше обновен</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="CreateNews" xml:space="preserve">
+    <value>Създай новина</value>
+  </data>
+  <data name="EditNews" xml:space="preserve">
+    <value>Промяна на новина</value>
+  </data>
 </root>

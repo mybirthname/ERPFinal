@@ -22,11 +22,13 @@ namespace ERP.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger, IHttpContextAccessor httpContextAccessor)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [BindProperty]
@@ -69,11 +71,18 @@ namespace ERP.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-
+                    
                     Response.Cookies.Append(
                         CookieRequestCultureProvider.DefaultCookieName,
                         CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(Input.Language))
                     );
+
+                    //var userRecord = _signInManager.UserManager.Users.ToList().First();  
+
+                    //_httpContextAccessor.HttpContext.Session.SetInt32("OrganizationID", userRecord.OrganizationID);
+                    //_httpContextAccessor.HttpContext.Session.SetString("UserID", userRecord.Id);
+
+                    //_httpContextAccessor.HttpContext.Session.
 
                     return LocalRedirect(returnUrl);
                 }

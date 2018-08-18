@@ -54,5 +54,7 @@ namespace ERP.Models
         [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Remark { get; set; }
 
+        public int Deleted { get; set; }
+
     }
 }

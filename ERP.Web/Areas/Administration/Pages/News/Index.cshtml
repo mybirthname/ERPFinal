@@ -6,13 +6,11 @@
 @{
 }
 
-<h2>Index</h2>
+@inject IStringLocalizer<SharedResources> sharedLocalizer
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-
-
+<nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
+    <div class="navbar-brand">@sharedLocalizer["News"] </div>
+</nav>
 
 <table class="table table-bordered table-striped">
     <thead>
@@ -36,3 +34,5 @@
         @Html.DisplayForModel("NewsList")
     </tbody>
 </table>
+
+<a asp-page="Create" class="btn btn-primary" >@sharedLocalizer["CreateNews"]</a>

@@ -4,14 +4,16 @@ using ERP.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ERP.Data.Migrations
 {
     [DbContext(typeof(ERPContext))]
-    partial class ERPContextModelSnapshot : ModelSnapshot
+    [Migration("20180818112410_changeUser")]
+    partial class changeUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,8 +37,6 @@ namespace ERP.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
-
-                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
@@ -90,8 +90,6 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<int>("Deleted");
-
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -143,8 +141,6 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<int>("Deleted");
-
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -192,8 +188,6 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<int>("Deleted");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(4000);
@@ -235,8 +229,6 @@ namespace ERP.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
-
-                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
@@ -284,8 +276,6 @@ namespace ERP.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
-
-                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
@@ -340,8 +330,6 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<int>("Deleted");
-
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -375,7 +363,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("Organizations");
 
                     b.HasData(
-                        new { ID = 1, City = "Sofia", Country = "Bulgaria", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 18, 23, 31, 10, 666, DateTimeKind.Local), Deleted = 0, Description = "Organization of the company which provides ", Email = "ContactCompanyEmail@CompanyDomain.com", Phone = "+359 888 123 456", ProviderOrganizationID = 0, Remark = "Values are filled automatically", Title = "Provider Organization", UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 18, 23, 31, 10, 666, DateTimeKind.Local), ZipCode = "1000" }
+                        new { ID = 1, City = "Sofia", Country = "Bulgaria", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 18, 14, 24, 10, 238, DateTimeKind.Local), Description = "Organization of the company which provides ", Email = "ContactCompanyEmail@CompanyDomain.com", Phone = "+359 888 123 456", ProviderOrganizationID = 0, Remark = "Values are filled automatically", Title = "Provider Organization", UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 18, 14, 24, 10, 238, DateTimeKind.Local), ZipCode = "1000" }
                     );
                 });
 
@@ -403,7 +391,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "065548f8-a5a6-4e2a-a30f-000b8d109ed2", ConcurrencyStamp = "525ee629-9019-4a37-9539-cd71a7f9508d", Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
+                        new { Id = "065548f8-a5a6-4e2a-a30f-000b8d109ed2", ConcurrencyStamp = "67e287fc-ed95-4993-b26f-a1ca768d5131", Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
                     );
                 });
 
@@ -439,8 +427,6 @@ namespace ERP.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
-
-                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
@@ -488,8 +474,6 @@ namespace ERP.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
-
-                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
@@ -543,8 +527,6 @@ namespace ERP.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
-
-                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
@@ -657,7 +639,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", AccessFailedCount = 0, ConcurrencyStamp = "7b4e23ad-47e7-450b-aebb-153b938efb29", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 18, 23, 31, 10, 651, DateTimeKind.Local), Email = "martin.stanchev87@gmail.com", EmailConfirmed = true, FirstName = "Martin", LastName = "Stanchev", LockoutEnabled = false, NormalizedEmail = "MARTIN.STANCHEV87@GMAIL.COM", NormalizedUserName = "MARTIN.STANCHEV87@GMAIL.COM", OrganizationID = 1, PasswordHash = "AQAAAAEAACcQAAAAEAi18MSbH0K3TZ7kE+wuRQLKv+VrdhgAYv6u2Hk7UogJ5YB8XUXcMuww284t5b1BHQ==", PhoneNumberConfirmed = false, SecurityStamp = "bf9e8265-475a-453f-89f9-e7a5fc157e4e", TwoFactorEnabled = false, UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 18, 23, 31, 10, 653, DateTimeKind.Local), UserName = "martin.stanchev87@gmail.com" }
+                        new { Id = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", AccessFailedCount = 0, ConcurrencyStamp = "bc2f4004-17bb-4429-960d-5cf78176217c", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 18, 14, 24, 10, 223, DateTimeKind.Local), Email = "martin.stanchev87@gmail.com", EmailConfirmed = true, FirstName = "Martin", LastName = "Stanchev", LockoutEnabled = false, NormalizedEmail = "MARTIN.STANCHEV87@GMAIL.COM", NormalizedUserName = "MARTIN.STANCHEV87@GMAIL.COM", OrganizationID = 1, PasswordHash = "AQAAAAEAACcQAAAAELkdYbPSu9VUmu2hL43/iD1I41yNBS6BkW6CSSbcBeFWAQ5Tesmq1zo7r1WrdbQ+Mw==", PhoneNumberConfirmed = false, SecurityStamp = "32fb198f-7fb1-4b64-8558-7f7c0b23ce90", TwoFactorEnabled = false, UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 18, 14, 24, 10, 225, DateTimeKind.Local), UserName = "martin.stanchev87@gmail.com" }
                     );
                 });
 

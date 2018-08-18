@@ -8,12 +8,14 @@ namespace ERP.Models
 {
     public class News: BaseModel
     {
-        [Required]
+        [Required(ErrorMessage = "_TitleRequired")]
         [StringLength(FieldLengthConstants.StandardFieldLength)]
+        [Display(Name ="_Title")]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="_DescriptionRequired")]
         [StringLength(FieldLengthConstants.DescriptionLength)]
+        [Display(Name ="_Description")]
         public string Description { get; set; }
 
     }

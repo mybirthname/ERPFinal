@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using AutoMapper;
 using ERP.Services.Administration;
 using ERP.Services.Interfaces;
+using ERP.Common;
 
 namespace ERP.Web
 {
@@ -47,6 +48,8 @@ namespace ERP.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(120));
+
             services.Configure<SqlDatabaseOptions>(option =>
             {
                 option.ConnectionString = Configuration.GetConnectionString("SqlServerConnectionString");
@@ -62,10 +65,16 @@ namespace ERP.Web
                 options.LoginPath = "/Identity/Account/Login";
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             AddCustomServices(services);
 
             services
-                .AddMvc()
+                .AddMvc(options=> 
+                {
+                    options.Filters.Add<SettingUserSessionFilter>();
+                    options.Filters.Add<SettingUserSessionPageFilter>();
+                })
                 .AddRazorPagesOptions(options=>
                 {
                     options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
@@ -95,6 +104,7 @@ namespace ERP.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseAuthentication();
 
@@ -139,9 +149,12 @@ namespace ERP.Web
         {
             services.AddSingleton<IEmailSender, EmailService>();
             services.Configure<SendGridEmailOptions>(this.Configuration.GetSection("EmailSettings"));
+            services.AddScoped<UserSession>();
+            services.AddScoped<DateTimeService>();
 
             services.AddAutoMapper();
             services.AddScoped<INewsService, NewsService>();
+            
 
         }
 

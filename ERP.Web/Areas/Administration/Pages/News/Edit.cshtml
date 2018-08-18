@@ -5,23 +5,26 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+@inject IStringLocalizer<SharedResources> sharedLocalizer
 
-<h4>News</h4>
-<hr />
+<nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
+    <div class="navbar-brand">@sharedLocalizer["EditNews"] </div>
+</nav>
+
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             @Html.EditorForModel("NewsEdit")
-            
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />
+                &nbsp;
+                <a asp-page="Index" class="btn btn-light">
+                    @sharedLocalizer["BackToList"]
+                </a>
+
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
 </div>
 
