@@ -19,5 +19,15 @@ namespace Dtos.User
         [Display(Name="_UserName")]
         public string Username { get; set; }
 
+        [Required(ErrorMessage ="_FirstNameRequired")]
+        [Display(Name ="_FirstName")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "_LastNameRequired")]
+        [Display(Name ="_LastName")]
+        public string LastName { get; set; }
+
+        [Display(Name ="_Description")]
+        public string Description { get; set; }
     }
 }

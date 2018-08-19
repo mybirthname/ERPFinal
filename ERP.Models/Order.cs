@@ -27,8 +27,8 @@ namespace ERP.Models
         [Range(0, int.MaxValue)]
         public decimal AmountNet { get; set; }
 
-        public int? SupplierOrganizationID { get; set; }
+        public Guid? SupplierOrganizationID { get; set; }
 
-        public int? SupplierID { get; set; }
+        public Guid? SupplierID { get; set; }
     }
 }

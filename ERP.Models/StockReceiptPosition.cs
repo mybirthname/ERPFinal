@@ -20,7 +20,7 @@ namespace ERP.Models
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
 
-        public int StockReceiptID { get; set; }
+        public Guid StockReceiptID { get; set; }
 
         public StockReceipt StockReceipt { get; set; }
 

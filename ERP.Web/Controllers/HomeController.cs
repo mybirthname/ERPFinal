@@ -13,28 +13,27 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using ERP.Models;
+using ERP.Services.Interfaces;
 
 namespace ERP.Web.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IEmailSender _sender;
 
-        public HomeController(IEmailSender emailSender, UserManager<User> userManager)
+        private readonly INewsService _newsService;
+
+        public HomeController(INewsService newsService)
         {
-            _sender = emailSender;
-            _userManager = userManager;
+            _newsService = newsService;
         }
 
 
         public async Task<IActionResult> Index()
         {
-            var currentUser = await _userManager.GetUserAsync(this.User);
-            var roles = await _userManager.GetRolesAsync(currentUser);
+            var model = await _newsService.GetTop3();
 
-            return View();
+            return View(model);
         }
 
         public IActionResult Privacy()

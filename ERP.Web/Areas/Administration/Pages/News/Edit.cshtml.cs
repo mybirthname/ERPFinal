@@ -25,7 +25,7 @@ namespace ERP.Web.Areas.Administration.Pages.News
         [BindProperty]
         public NewsInputModel InputModel { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
                 return NotFound();

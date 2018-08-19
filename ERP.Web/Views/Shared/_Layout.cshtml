@@ -15,6 +15,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
         <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/cbfxv-h6xqh.svg" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,7 +24,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">@sharedLocalizer["Home"]</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">@sharedLocalizer["Home"]</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -52,8 +53,15 @@
                         <a asp-area="Administration" asp-page="/News/Index" class="dropdown-item">@sharedLocalizer["News"]</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">@sharedLocalizer["User"]</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">@sharedLocalizer["UserRoles"]</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @sharedLocalizer["Owner"]
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a asp-area="Provider" asp-page="/UserRoles/Index" class="dropdown-item">@sharedLocalizer["UserRoles"]</a>
                     </div>
                 </li>
             </ul>

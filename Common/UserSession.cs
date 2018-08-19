@@ -9,7 +9,9 @@ namespace ERP.Common
     {
         public string UserID { get; set; }
 
-        public int OrganizationID { get; set; }
+        public Guid OrganizationID { get; set; }
+
+        public string UserFullName { get; set; }
     }
 
 }

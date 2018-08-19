@@ -11,8 +11,9 @@ namespace ERP.Services.Interfaces
     {
         Task<List<News>> GetAllNewsRecords();
         Task CreateNewsRecord(NewsInputModel model);
-        Task<NewsInputModel> GetNewsByID(int id);
+        Task<NewsInputModel> GetNewsByID(Guid id);
+        Task<List<News>> GetTop3();
         Task UpdateRecord(NewsInputModel inputModel);
-        Task DeleteRecord(int id);
+        Task DeleteRecord(Guid id);
     }
 }

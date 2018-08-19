@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Data.Migrations
 {
     [DbContext(typeof(ERPContext))]
-    [Migration("20180818112410_changeUser")]
-    partial class changeUser
+    [Migration("20180818233230_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Customer", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
                         .HasMaxLength(50);
@@ -38,6 +37,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -48,7 +49,7 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(20);
@@ -79,9 +80,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Invoice", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("AmountNet");
 
@@ -90,6 +90,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -97,9 +99,9 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrderID");
+                    b.Property<Guid>("OrderID");
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
@@ -108,7 +110,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<int>("Status");
 
-                    b.Property<int>("SupplierOrganizationID");
+                    b.Property<Guid>("SupplierOrganizationID");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -132,25 +134,26 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.InvoicePosition", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
-                    b.Property<int>("InvoiceID");
+                    b.Property<Guid>("InvoiceID");
 
                     b.Property<string>("NrIntern")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<decimal>("Price");
 
@@ -179,14 +182,15 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.News", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
+
+                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -196,7 +200,7 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
@@ -219,9 +223,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Order", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("AmountNet");
 
@@ -230,6 +233,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -237,7 +242,7 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
@@ -246,9 +251,9 @@ namespace ERP.Data.Migrations
 
                     b.Property<int>("Status");
 
-                    b.Property<int?>("SupplierID");
+                    b.Property<Guid?>("SupplierID");
 
-                    b.Property<int?>("SupplierOrganizationID");
+                    b.Property<Guid?>("SupplierOrganizationID");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -268,14 +273,15 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.OrderPosition", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
+
+                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
@@ -284,9 +290,9 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrderID");
+                    b.Property<Guid>("OrderID");
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<decimal>("Price");
 
@@ -315,9 +321,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Organization", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
                         .HasMaxLength(50);
@@ -330,6 +335,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -339,7 +346,7 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Phone")
                         .HasMaxLength(20);
 
-                    b.Property<int>("ProviderOrganizationID");
+                    b.Property<Guid>("ProviderOrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(50);
@@ -363,7 +370,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("Organizations");
 
                     b.HasData(
-                        new { ID = 1, City = "Sofia", Country = "Bulgaria", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 18, 14, 24, 10, 238, DateTimeKind.Local), Description = "Organization of the company which provides ", Email = "ContactCompanyEmail@CompanyDomain.com", Phone = "+359 888 123 456", ProviderOrganizationID = 0, Remark = "Values are filled automatically", Title = "Provider Organization", UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 18, 14, 24, 10, 238, DateTimeKind.Local), ZipCode = "1000" }
+                        new { ID = new Guid("065548f8-a5a6-4e2a-a30f-000b8d109ed2"), City = "Sofia", Country = "Bulgaria", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 19, 2, 32, 29, 917, DateTimeKind.Local), Deleted = 0, Description = "Organization of the company which provides ", Email = "ContactCompanyEmail@CompanyDomain.com", Phone = "+359 888 123 456", ProviderOrganizationID = new Guid("00000000-0000-0000-0000-000000000000"), Remark = "Values are filled automatically", Title = "Provider Organization", UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 19, 2, 32, 29, 917, DateTimeKind.Local), ZipCode = "1000" }
                     );
                 });
 
@@ -391,7 +398,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "065548f8-a5a6-4e2a-a30f-000b8d109ed2", ConcurrencyStamp = "67e287fc-ed95-4993-b26f-a1ca768d5131", Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
+                        new { Id = "065548f8-a5a6-4e2a-a30f-000b8d109ed2", ConcurrencyStamp = "33542a57-fb53-4b65-9477-41252131984e", Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
                     );
                 });
 
@@ -417,9 +424,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.StockReceipt", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("AmountNet");
 
@@ -428,6 +434,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -435,9 +443,9 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrderID");
+                    b.Property<Guid>("OrderID");
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
@@ -466,14 +474,15 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.StockReceiptPosition", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
+
+                    b.Property<int>("Deleted");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
@@ -482,7 +491,7 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<decimal>("Price");
 
@@ -491,7 +500,7 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
 
-                    b.Property<int>("StockReceiptID");
+                    b.Property<Guid>("StockReceiptID");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -513,9 +522,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Supplier", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
                         .HasMaxLength(50);
@@ -528,6 +536,8 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000);
 
@@ -538,7 +548,7 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(20);
@@ -606,7 +616,7 @@ namespace ERP.Data.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("PasswordHash");
 
@@ -639,7 +649,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", AccessFailedCount = 0, ConcurrencyStamp = "bc2f4004-17bb-4429-960d-5cf78176217c", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 18, 14, 24, 10, 223, DateTimeKind.Local), Email = "martin.stanchev87@gmail.com", EmailConfirmed = true, FirstName = "Martin", LastName = "Stanchev", LockoutEnabled = false, NormalizedEmail = "MARTIN.STANCHEV87@GMAIL.COM", NormalizedUserName = "MARTIN.STANCHEV87@GMAIL.COM", OrganizationID = 1, PasswordHash = "AQAAAAEAACcQAAAAELkdYbPSu9VUmu2hL43/iD1I41yNBS6BkW6CSSbcBeFWAQ5Tesmq1zo7r1WrdbQ+Mw==", PhoneNumberConfirmed = false, SecurityStamp = "32fb198f-7fb1-4b64-8558-7f7c0b23ce90", TwoFactorEnabled = false, UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 18, 14, 24, 10, 225, DateTimeKind.Local), UserName = "martin.stanchev87@gmail.com" }
+                        new { Id = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", AccessFailedCount = 0, ConcurrencyStamp = "e255971d-bdb1-4281-9e5f-593cb4d95d97", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 19, 2, 32, 29, 903, DateTimeKind.Local), Email = "martin.stanchev87@gmail.com", EmailConfirmed = true, FirstName = "Martin", LastName = "Stanchev", LockoutEnabled = false, NormalizedEmail = "MARTIN.STANCHEV87@GMAIL.COM", NormalizedUserName = "MARTIN.STANCHEV87@GMAIL.COM", OrganizationID = new Guid("065548f8-a5a6-4e2a-a30f-000b8d109ed2"), PasswordHash = "AQAAAAEAACcQAAAAEHGkmG2aw1+J6VLOsY+Lp+Xx7Yog2klxJ8cvgcKJvv3JFs4Pq4qklW7t0p3kssQ5FA==", PhoneNumberConfirmed = false, SecurityStamp = "878c50ab-59bc-4ed9-96b9-3a92bb87641c", TwoFactorEnabled = false, UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 19, 2, 32, 29, 904, DateTimeKind.Local), UserName = "martin.stanchev87@gmail.com" }
                     );
                 });
 

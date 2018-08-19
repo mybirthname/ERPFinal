@@ -24,7 +24,7 @@ namespace ERP.Models
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
 
-        public int InvoiceID { get; set; }
+        public Guid InvoiceID { get; set; }
 
         public Invoice Invoice { get; set; }
 

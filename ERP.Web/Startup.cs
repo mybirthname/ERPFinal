@@ -79,6 +79,7 @@ namespace ERP.Web
                 {
                     options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
                     options.Conventions.AuthorizeAreaFolder("Administration", "/News");
+                    options.Conventions.AuthorizeAreaFolder("Provider", "/UserRoles");
                 })
                 .AddDataAnnotationsLocalization()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

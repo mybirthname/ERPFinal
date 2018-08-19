@@ -25,15 +25,22 @@ namespace ERP.Common
         public async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, PageHandlerExecutionDelegate next)
         {
             if (!context.HttpContext.User.Identity.IsAuthenticated)
+            {
                 await next();
+                return;
+            }
 
             if (context.HttpContext.Session.GetString("__UserSession") != null)
+            {
                 await next();
+                return;
+            }
 
             var currentUser = await _userManager.GetUserAsync(context.HttpContext.User);
 
             _userSession.OrganizationID = currentUser.OrganizationID;
             _userSession.UserID = currentUser.Id;
+            _userSession.UserFullName = currentUser.LastName + ", " + currentUser.FirstName;
 
             var result = JsonConvert.SerializeObject(_userSession);
 

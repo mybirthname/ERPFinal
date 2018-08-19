@@ -55,8 +55,11 @@ namespace ERP.Web.Areas.Identity.Pages.Account.Manage
             {
                 Email = email,
                 PhoneNumber = phoneNumber,
-                Username = userName
-        };
+                Username = userName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Description = user.Description
+            };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 

@@ -28,7 +28,7 @@ namespace ERP.Web.Areas.Administration.Pages.News
             InputNews = await _newsService.GetAllNewsRecords();
         }
 
-        public async Task OnPostDelete(int id)
+        public async Task OnPostDelete(Guid id)
         {
             await _newsService.DeleteRecord(id);
             InputNews = await _newsService.GetAllNewsRecords();

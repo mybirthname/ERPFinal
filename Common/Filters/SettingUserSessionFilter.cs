@@ -40,6 +40,7 @@ namespace ERP.Common
 
             _userSession.OrganizationID = currentUser.OrganizationID;
             _userSession.UserID = currentUser.Id;
+            _userSession.UserFullName = currentUser.LastName + ", " + currentUser.FirstName;
 
             var result = JsonConvert.SerializeObject(_userSession);
 

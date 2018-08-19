@@ -8,7 +8,7 @@ namespace Dtos.Administration.News
 {
     public class NewsInputModel
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         [Required(ErrorMessage ="_NrInternRequired")]
         [Display(Name ="_NrIntern")]

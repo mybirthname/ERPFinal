@@ -1,7 +1,26 @@
-﻿@{
+﻿@model IList<News>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 @using ERP.Web.Controllers
 @inject IStringLocalizer<HomeController> localizer
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">@item.Title</a>
+                    </h4>
+                    <p class="card-text">@item.Description</p>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
 

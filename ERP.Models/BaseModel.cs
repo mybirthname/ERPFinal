@@ -8,7 +8,7 @@ namespace ERP.Models
 {
     public abstract class BaseModel
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         [Required(ErrorMessage ="_NrInternError")]
         [StringLength(FieldLengthConstants.StandardFieldLength)]
@@ -31,7 +31,7 @@ namespace ERP.Models
         [DataType(DataType.Date)]
         public DateTime UpdateDate { get; set; }
 
-        public int OrganizationID { get; set; }
+        public Guid OrganizationID { get; set; }
 
         [StringLength(FieldLengthConstants.RemarkLength)]
         [Display(Name ="_Remark")]

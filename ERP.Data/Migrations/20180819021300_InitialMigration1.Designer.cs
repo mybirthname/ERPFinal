@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Data.Migrations
 {
     [DbContext(typeof(ERPContext))]
-    [Migration("20180816020402_InitialMigrationTest")]
-    partial class InitialMigrationTest
+    [Migration("20180819021300_InitialMigration1")]
+    partial class InitialMigration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Customer", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
                         .HasMaxLength(50);
@@ -38,8 +37,10 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("Email")
                         .HasMaxLength(50);
@@ -48,17 +49,13 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(20);
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Street")
                         .HasMaxLength(50);
@@ -71,7 +68,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.Property<string>("ZipCode")
                         .HasMaxLength(10);
@@ -83,9 +80,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Invoice", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("AmountNet");
 
@@ -94,29 +90,27 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("NrIntern")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrderID");
+                    b.Property<Guid>("OrderID");
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<DateTime>("SendDate");
 
                     b.Property<int>("Status");
 
-                    b.Property<int>("SupplierOrganizationID");
+                    b.Property<Guid>("SupplierOrganizationID");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -127,7 +121,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -140,25 +134,26 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.InvoicePosition", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                    b.Property<int>("Deleted");
 
-                    b.Property<int>("InvoiceID");
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000);
+
+                    b.Property<Guid>("InvoiceID");
 
                     b.Property<string>("NrIntern")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<decimal>("Price");
 
@@ -166,10 +161,6 @@ namespace ERP.Data.Migrations
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -180,7 +171,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -189,11 +180,51 @@ namespace ERP.Data.Migrations
                     b.ToTable("InvoicePositions");
                 });
 
+            modelBuilder.Entity("ERP.Models.News", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<int>("Deleted");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(4000);
+
+                    b.Property<string>("NrIntern")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<Guid>("OrganizationID");
+
+                    b.Property<string>("Remark")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.Property<string>("UserID");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("News");
+                });
+
             modelBuilder.Entity("ERP.Models.Order", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("AmountNet");
 
@@ -202,29 +233,27 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("NrIntern")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<DateTime>("SendDate");
 
                     b.Property<int>("Status");
 
-                    b.Property<int?>("SupplierID");
+                    b.Property<Guid?>("SupplierID");
 
-                    b.Property<int?>("SupplierOrganizationID");
+                    b.Property<Guid?>("SupplierOrganizationID");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -235,7 +264,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -244,25 +273,26 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.OrderPosition", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("NrIntern")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrderID");
+                    b.Property<Guid>("OrderID");
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<decimal>("Price");
 
@@ -270,10 +300,6 @@ namespace ERP.Data.Migrations
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -284,7 +310,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -295,9 +321,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Organization", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
                         .HasMaxLength(50);
@@ -310,8 +335,10 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("Email")
                         .HasMaxLength(50);
@@ -319,14 +346,10 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Phone")
                         .HasMaxLength(20);
 
-                    b.Property<int>("ProviderOrganizationID");
+                    b.Property<Guid>("ProviderOrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(50);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Street")
                         .HasMaxLength(50);
@@ -347,7 +370,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("Organizations");
 
                     b.HasData(
-                        new { ID = 1, City = "Sofia", Country = "Bulgaria", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 16, 5, 4, 2, 427, DateTimeKind.Local), Description = "Organization of the company which provides ", Email = "ContactCompanyEmail@CompanyDomain.com", Phone = "+359 888 123 456", ProviderOrganizationID = 0, Remark = "Values are filled automatically", Title = "Provider Organization", UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 16, 5, 4, 2, 427, DateTimeKind.Local), ZipCode = "1000" }
+                        new { ID = new Guid("065548f8-a5a6-4e2a-a30f-000b8d109ed2"), City = "Sofia", Country = "Bulgaria", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 19, 5, 12, 59, 914, DateTimeKind.Local), Deleted = 0, Description = "Organization of the company which provides ", Email = "ContactCompanyEmail@CompanyDomain.com", Phone = "+359 888 123 456", ProviderOrganizationID = new Guid("00000000-0000-0000-0000-000000000000"), Remark = "Values are filled automatically", Title = "Provider Organization", UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 19, 5, 12, 59, 914, DateTimeKind.Local), ZipCode = "1000" }
                     );
                 });
 
@@ -375,7 +398,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "065548f8-a5a6-4e2a-a30f-000b8d109ed2", ConcurrencyStamp = "9796dc6b-226c-48af-9efa-31134e00f084", Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
+                        new { Id = "065548f8-a5a6-4e2a-a30f-000b8d109ed2", ConcurrencyStamp = "1b320143-e7fc-4b68-99e8-3192a871d19e", Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
                     );
                 });
 
@@ -401,9 +424,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.StockReceipt", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("AmountNet");
 
@@ -412,23 +434,21 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("NrIntern")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrderID");
+                    b.Property<Guid>("OrderID");
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<DateTime>("SendDate");
 
@@ -443,7 +463,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -454,23 +474,24 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.StockReceiptPosition", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("NrIntern")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<decimal>("Price");
 
@@ -479,11 +500,7 @@ namespace ERP.Data.Migrations
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
 
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
-
-                    b.Property<int>("StockReceiptID");
+                    b.Property<Guid>("StockReceiptID");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -494,7 +511,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -505,9 +522,8 @@ namespace ERP.Data.Migrations
 
             modelBuilder.Entity("ERP.Models.Supplier", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
                         .HasMaxLength(50);
@@ -520,8 +536,10 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
+                    b.Property<int>("Deleted");
+
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("Email")
                         .HasMaxLength(50);
@@ -530,17 +548,13 @@ namespace ERP.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(20);
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Street")
                         .HasMaxLength(50);
@@ -553,7 +567,7 @@ namespace ERP.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.Property<string>("ZipCode")
                         .HasMaxLength(10);
@@ -579,7 +593,7 @@ namespace ERP.Data.Migrations
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(2000);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -587,9 +601,11 @@ namespace ERP.Data.Migrations
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<bool>("LockoutEnabled");
@@ -602,7 +618,7 @@ namespace ERP.Data.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
-                    b.Property<int>("OrganizationID");
+                    b.Property<Guid>("OrganizationID");
 
                     b.Property<string>("PasswordHash");
 
@@ -635,7 +651,7 @@ namespace ERP.Data.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", AccessFailedCount = 0, ConcurrencyStamp = "85a5d039-bdaa-4964-bf5f-aec0408afd92", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 16, 5, 4, 2, 412, DateTimeKind.Local), Email = "martin.stanchev87@gmail.com", EmailConfirmed = true, FirstName = "Martin", LastName = "Stanchev", LockoutEnabled = false, NormalizedEmail = "MARTIN.STANCHEV87@GMAIL.COM", NormalizedUserName = "MARTIN.STANCHEV87@GMAIL.COM", OrganizationID = 1, PasswordHash = "AQAAAAEAACcQAAAAEBHNaY9qF7ln+2McreBev6OSMKV8NXg8ZyLWmNJkDgDWG7ZT4V9mx83OSoVStKnJuQ==", PhoneNumberConfirmed = false, SecurityStamp = "743d9ad8-7b2b-4db9-a753-67393b4417eb", TwoFactorEnabled = false, UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 16, 5, 4, 2, 414, DateTimeKind.Local), UserName = "martin.stanchev87@gmail.com" }
+                        new { Id = "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", AccessFailedCount = 0, ConcurrencyStamp = "2cc6f885-d16d-4201-9c75-865a5802ce91", CreateBy = "Automatic Seed Function", CreateDate = new DateTime(2018, 8, 19, 5, 12, 59, 900, DateTimeKind.Local), Email = "martin.stanchev87@gmail.com", EmailConfirmed = true, FirstName = "Martin", LastName = "Stanchev", LockoutEnabled = false, NormalizedEmail = "MARTIN.STANCHEV87@GMAIL.COM", NormalizedUserName = "MARTIN.STANCHEV87@GMAIL.COM", OrganizationID = new Guid("065548f8-a5a6-4e2a-a30f-000b8d109ed2"), PasswordHash = "AQAAAAEAACcQAAAAEIdlhRKIVQ5pUkgKProOTNtzHAGKFOlNvsSH6YrwVZQM4a1mYJMMb1tgxyIeR/3BHQ==", PhoneNumberConfirmed = false, SecurityStamp = "ff9b1d55-f039-4a65-bdb1-94c31b5001bc", TwoFactorEnabled = false, UpdateBy = "Automatic Seed Function", UpdateDate = new DateTime(2018, 8, 19, 5, 12, 59, 901, DateTimeKind.Local), UserName = "martin.stanchev87@gmail.com" }
                     );
                 });
 
@@ -707,6 +723,23 @@ namespace ERP.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType");
+
+                    b.Property<string>("ClaimValue");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUserClaims");
                 });
 
             modelBuilder.Entity("ERP.Models.Invoice", b =>

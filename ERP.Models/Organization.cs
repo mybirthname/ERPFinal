@@ -9,9 +9,9 @@ namespace ERP.Models
     public class Organization
     {
 
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
-        public int ProviderOrganizationID { get; set; }
+        public Guid ProviderOrganizationID { get; set; }
 
         [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Title { get; set; }

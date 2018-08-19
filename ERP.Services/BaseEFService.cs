@@ -23,6 +23,7 @@ namespace ERP.Services
             DbContext = dbContext;
             Mapper = mapper;
             HttpContextAccessor = httpContextAccessor;
+            DateTimeService = dateTimeService;
         }
 
         public UserSession GetUserSession()
@@ -32,6 +33,37 @@ namespace ERP.Services
                 return null;
 
             return JsonConvert.DeserializeObject<UserSession>(userSessionValue);
+        }
+
+        public virtual void SetBaseModelFieldsOnCreate(BaseModel instance)
+        {
+            var userSession = GetUserSession();
+
+            instance.OrganizationID = userSession.OrganizationID;
+            instance.UserID = userSession.UserID;
+            instance.CreateBy = userSession.UserFullName;
+            instance.UpdateBy = userSession.UserFullName;
+
+            instance.CreateDate = DateTimeService.ProvideDateTime();
+            instance.UpdateDate = DateTimeService.ProvideDateTime();
+
+        }
+
+        public virtual void SetBaseModelFieldOnUpdate(BaseModel instance)
+        {
+            var userSession = GetUserSession();
+
+            instance.UpdateBy = userSession.UserFullName;
+            instance.UpdateDate = DateTimeService.ProvideDateTime();
+        }
+
+        public virtual void SetBaseModelFieldOnDelete(BaseModel instance)
+        {
+            var userSession = GetUserSession();
+
+            instance.UpdateBy = userSession.UserFullName;
+            instance.UpdateDate = DateTimeService.ProvideDateTime();
+            instance.Deleted = 1;
         }
     }
 }

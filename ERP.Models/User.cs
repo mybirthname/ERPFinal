@@ -9,9 +9,11 @@ namespace ERP.Models
 {
     public class User :IdentityUser<string>
     {
+        [Required]
         [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string FirstName { get; set; }
 
+        [Required]
         [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string LastName { get; set; }
 
@@ -30,7 +32,7 @@ namespace ERP.Models
         [DataType(DataType.Date)]
         public DateTime UpdateDate { get; set; }
 
-        public int OrganizationID { get; set; }
+        public Guid OrganizationID { get; set; }
 
     }
 }

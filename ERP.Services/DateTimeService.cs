@@ -10,7 +10,7 @@ namespace ERP.Services
 
         public DateTime ProvideDateTime()
         {
-            if (CurrentTime != null)
+            if (CurrentTime != DateTime.MinValue)
                 return CurrentTime;
 
             return DateTime.Now;

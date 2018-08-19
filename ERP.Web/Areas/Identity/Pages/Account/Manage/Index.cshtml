@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Profile";
     Layout = "/Views/Shared/_Layout.cshtml";
-
+    var rows = 5;
 }
 
 @inject IStringLocalizer<SharedResources> sharedLocalizer
@@ -21,6 +21,8 @@
                 <label asp-for="Input.Username"></label>
                 <input asp-for="Input.Username" class="form-control" disabled />
             </div>
+            <form-control-text-box asp-for="Input.FirstName"></form-control-text-box>
+            <form-control-text-box asp-for="Input.LastName"></form-control-text-box>
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control" />
@@ -31,7 +33,8 @@
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default">Save</button>
+            <form-control-text-area asp-for="Input.Description" asp-rows="@rows"></form-control-text-area>
+            <button type="submit" class="btn btn-default">@sharedLocalizer["Save"]</button>
         </form>
     </div>
 </div>
