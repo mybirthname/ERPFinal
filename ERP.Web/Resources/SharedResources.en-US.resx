@@ -153,8 +153,8 @@
   <data name="Supplier" xml:space="preserve">
     <value>Suppliers</value>
   </data>
-  <data name="User" xml:space="preserve">
-    <value>Users</value>
+  <data name="CreateUsers" xml:space="preserve">
+    <value>Create User</value>
   </data>
   <data name="Accept" xml:space="preserve">
     <value>Accept</value>
@@ -302,5 +302,38 @@
   </data>
   <data name="Owner" xml:space="preserve">
     <value>Owner</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Create User</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="AddRole" xml:space="preserve">
+    <value>Add Role</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Организации</value>
+  </data>
+  <data name="CantAdd" xml:space="preserve">
+    <value>You can't add role which is already added</value>
+  </data>
+  <data name="CantRemove" xml:space="preserve">
+    <value>You can't remove role which is not previously added</value>
+  </data>
+  <data name="RemoveRole" xml:space="preserve">
+    <value>Remove Role</value>
   </data>
 </root>

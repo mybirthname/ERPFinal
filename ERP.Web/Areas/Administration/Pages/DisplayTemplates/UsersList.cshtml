@@ -1,0 +1,40 @@
+﻿@model Areas.Administration.Pages.Users.IndexModel
+
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+
+@foreach (var item in Model.Users)
+{
+    <tr>
+        <td>
+            <a asp-page="./Edit" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.FirstName)</a>
+        </td>
+        <td>
+            <a asp-page="./Edit" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.LastName)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+
+            @{
+                var roleList = await UserManager.GetRolesAsync(item);
+                bool isSuperAdmin = roleList.Any(x => x == "SuperAdmin");
+            }
+
+            @if (!isSuperAdmin)
+            {
+                <form method="post">
+                    <input name="id" id="id" value="@item.Id" type="hidden" />
+                    <button type="submit" asp-page="Index" class="btn btn-danger" asp-page-handler="Delete">@sharedLocalizer["Delete"]</button>
+                </form>
+            }
+        </td>
+    </tr>
+}
+

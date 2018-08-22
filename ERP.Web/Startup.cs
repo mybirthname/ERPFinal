@@ -83,6 +83,8 @@ namespace ERP.Web
                 })
                 .AddDataAnnotationsLocalization()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
         }
 
 
@@ -155,7 +157,7 @@ namespace ERP.Web
 
             services.AddAutoMapper();
             services.AddScoped<INewsService, NewsService>();
-            
+            services.AddScoped<IUsersService, UsersService>();
 
         }
 

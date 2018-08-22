@@ -1,5 +1,8 @@
 ﻿@model IndexModel
 
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
+
 @foreach (var item in Model.InputNews)
 {
     <tr>
@@ -7,7 +10,7 @@
             <a asp-page="./Edit" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.NrIntern)</a>
         </td>
         <td>
-            <a asp-page="./Edit" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem=> item.Title)</a>
+            <a asp-page="./Edit" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Title)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreateBy)
@@ -18,7 +21,7 @@
         <td>
             <form method="post">
                 <input name="id" id="id" value="@item.ID" type="hidden" />
-                <button type="submit" asp-page="Index" class="btn btn-danger" asp-page-handler="Delete">Delete</button>
+                <button type="submit" asp-page="Index" class="btn btn-danger" asp-page-handler="Delete">@sharedLocalizer["Delete"]</button>
             </form>
         </td>
     </tr>

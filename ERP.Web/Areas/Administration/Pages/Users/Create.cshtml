@@ -1,5 +1,5 @@
 ﻿@page
-@model CreateModel
+@model ERP.Web.Areas.Administration.Pages.Users.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -9,17 +9,15 @@
 
 <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
     <div class="navbar-brand">
-        @sharedLocalizer["CreateNews"]
+        @sharedLocalizer["CreateUsers"]
     </div>
 </nav>
 
-
-
 <div class="row">
     <div class="col-md-4">
-
         <form method="post">
-            @Html.EditorForModel("NewsCreate")
+
+            @Html.EditorForModel("UsersCreate")
 
             <div class="form-group">
                 <input type="submit" value="@sharedLocalizer["Create"]" class="btn btn-success" />
@@ -27,6 +25,7 @@
                 <a asp-page="Index" class="btn btn-light">
                     @sharedLocalizer["BackToList"]
                 </a>
+
             </div>
         </form>
     </div>

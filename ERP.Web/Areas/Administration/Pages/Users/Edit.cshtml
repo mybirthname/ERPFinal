@@ -1,28 +1,22 @@
-﻿@page
-@model CreateModel
+﻿@page "{id}"
+@model ERP.Web.Areas.Administration.Pages.Users.EditModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 @inject IStringLocalizer<SharedResources> sharedLocalizer
 
 <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
-    <div class="navbar-brand">
-        @sharedLocalizer["CreateNews"]
-    </div>
+    <div class="navbar-brand">@sharedLocalizer["EditUser"] </div>
 </nav>
-
-
 
 <div class="row">
     <div class="col-md-4">
-
         <form method="post">
-            @Html.EditorForModel("NewsCreate")
-
+            @Html.EditorForModel("UsersEdit")
             <div class="form-group">
-                <input type="submit" value="@sharedLocalizer["Create"]" class="btn btn-success" />
+                <input type="submit" value="@sharedLocalizer["Edit"]" class="btn btn-success" />
                 &nbsp;
                 <a asp-page="Index" class="btn btn-light">
                     @sharedLocalizer["BackToList"]
@@ -31,5 +25,4 @@
         </form>
     </div>
 </div>
-
 

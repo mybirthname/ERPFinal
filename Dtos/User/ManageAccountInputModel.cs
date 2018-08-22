@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dtos.Filters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -7,6 +8,8 @@ namespace Dtos.User
 {
     public class ManageAccountInputModel
     {
+        public string ID { get; set; }
+
         [Required(ErrorMessage ="_EmailRequired")]
         [Display(Name="_Email")]
         [EmailAddress]
@@ -29,5 +32,12 @@ namespace Dtos.User
 
         [Display(Name ="_Description")]
         public string Description { get; set; }
+
+        [Display(Name = "_Password")]
+        [PlaintTextValidation]
+        public string NormalPassword { get; set; }
+
+        [Display(Name = "_Roles")]
+        public string Roles { get; set; }
     }
 }

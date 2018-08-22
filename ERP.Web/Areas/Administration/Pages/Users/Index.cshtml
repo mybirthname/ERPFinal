@@ -1,0 +1,41 @@
+﻿@page
+@model ERP.Web.Areas.Administration.Pages.Users.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
+    <div class="navbar-brand">@sharedLocalizer["Users"] </div>
+</nav>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].LastName)
+            </th>
+            <th>
+                @sharedLocalizer["Email"]
+            </th>
+            <th>
+                @sharedLocalizer["PhoneNumber"]
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayForModel("UsersList")
+
+    </tbody>
+</table>
+
+<a asp-page="Create" class="btn btn-primary">@sharedLocalizer["CreateUser"]</a>
+

@@ -14,8 +14,11 @@ namespace ERP.RazorLibrary.Helpers
         [HtmlAttributeName("asp-for")]
         public ModelExpression For { get; set; }
 
-        [HtmlAttributeName("asp-rows")]
-        public ModelExpression Rows { get; set; }
+        [HtmlAttributeName("rows")]
+        public int Rows { get; set; }
+
+        [HtmlAttributeName("disabled")]
+        public string Disabled { get; set; }
 
         private readonly IHtmlGenerator _generator;
 
@@ -38,8 +41,15 @@ namespace ERP.RazorLibrary.Helpers
                 var label = _generator.GenerateLabel(ViewContext, For.ModelExplorer, For.Name, null, new { @class = "control-label" });
                 label.WriteTo(writer, NullHtmlEncoder.Default);
 
-                var rows = Rows == null ? 8 : Convert.ToInt32(Rows.Model);
-                var textArea = _generator.GenerateTextArea(ViewContext, For.ModelExplorer, For.Name, rows, 100, new { @class = "form-control" });
+                var rows = Rows == 0 ? 8 : Rows;
+                object htmlAttributes = null;
+
+                if(string.IsNullOrEmpty(Disabled))
+                    htmlAttributes = new { @class = "form-control" };
+                else
+                    htmlAttributes = new { @class = "form-control", @disabled = Disabled };
+
+                var textArea = _generator.GenerateTextArea(ViewContext, For.ModelExplorer, For.Name, rows, 100, htmlAttributes);
                 textArea.WriteTo(writer, NullHtmlEncoder.Default);
 
                 var validationMsg = _generator.GenerateValidationMessage(ViewContext, For.ModelExplorer, For.Name, null, ViewContext.ValidationMessageElement, new { @class = "text-danger" });

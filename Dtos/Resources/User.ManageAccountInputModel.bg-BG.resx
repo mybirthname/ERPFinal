@@ -138,8 +138,14 @@
   <data name="_LastNameRequired" xml:space="preserve">
     <value>Фамилията е задължително поле</value>
   </data>
+  <data name="_Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
   <data name="_PhoneNumber" xml:space="preserve">
     <value>Телефон</value>
+  </data>
+  <data name="_Roles" xml:space="preserve">
+    <value>Избрани роли</value>
   </data>
   <data name="_UserName" xml:space="preserve">
     <value>Име на потребителя</value>

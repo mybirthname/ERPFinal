@@ -11,10 +11,12 @@ namespace ERP.Models
     {
         [Required]
         [StringLength(FieldLengthConstants.StandardFieldLength)]
+        [Display(Name ="_FirstName")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(FieldLengthConstants.StandardFieldLength)]
+        [Display(Name ="_LastName")]
         public string LastName { get; set; }
 
         [StringLength(FieldLengthConstants.DescriptionLength)]

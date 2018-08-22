@@ -117,37 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Email" xml:space="preserve">
+    <value>Поща</value>
+  </data>
+  <data name="_CreateBy" xml:space="preserve">
+    <value>Създател</value>
+  </data>
+  <data name="_CreateDate" xml:space="preserve">
+    <value>Дата на създаване</value>
+  </data>
   <data name="_Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Описание</value>
   </data>
-  <data name="_Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="_EmailRequired" xml:space="preserve">
-    <value>Email is required field</value>
+  <data name="_DescriptionRequired" xml:space="preserve">
+    <value>Полето описание е задължително</value>
   </data>
   <data name="_FirstName" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="_FirstNameRequired" xml:space="preserve">
-    <value>First name is required field</value>
+    <value>Име</value>
   </data>
   <data name="_LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Фамилия</value>
   </data>
-  <data name="_LastNameRequired" xml:space="preserve">
-    <value>Last name is required field</value>
+  <data name="_NrIntern" xml:space="preserve">
+    <value>Номер</value>
   </data>
-  <data name="_Password" xml:space="preserve">
-    <value>Password</value>
+  <data name="_NrInternError" xml:space="preserve">
+    <value>Полето номер е задължително</value>
   </data>
-  <data name="_PhoneNumber" xml:space="preserve">
-    <value>Phone Number</value>
+  <data name="_Title" xml:space="preserve">
+    <value>Заглавие</value>
   </data>
-  <data name="_Roles" xml:space="preserve">
-    <value>Selected Roles</value>
-  </data>
-  <data name="_UserName" xml:space="preserve">
-    <value>Username</value>
+  <data name="_TitleRequired" xml:space="preserve">
+    <value>Полето заглавие е задължително</value>
   </data>
 </root>

@@ -1,0 +1,25 @@
+﻿@model Areas.Administration.Pages.Users.EditModel
+
+
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+@inject RoleManager<Role> roleManager;
+
+@{
+    var rows = 5;
+    var roles = new SelectList(roleManager.Roles.Where(x => x.Name != "SuperAdmin").ToList());
+}
+
+<div class="form-group role-container">
+    <label for="UserRoles" class="control-label">@sharedLocalizer["Roles"]</label>
+    <select id="UserRolesDdl" class="form-control" style="margin-bottom:2px;" asp-items="@roles"></select>
+    <button type="button" id="AddRoleBtn" class="btn btn-warning">@sharedLocalizer["AddRole"]</button>
+    <button type="button" id="RemoveRoleBtn" class="btn btn-danger">@sharedLocalizer["RemoveRole"]</button>
+
+    <span class="field-validation-error text-danger role-request-msg" style="display:none;"></span>
+</div>
+
+<div class="spinner" style="display:none;">
+    <img src="~/images/Spinner-1s-200px.svg" height="50" width="50" />
+</div>
+
+<form-control-text-area asp-for="UserModel.Roles" rows="@rows" disabled="disabled"></form-control-text-area>

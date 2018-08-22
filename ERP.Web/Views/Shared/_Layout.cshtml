@@ -40,10 +40,10 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">@sharedLocalizer["Supplier"]</a>
+                    <a asp-area="" asp-controller="Suppliers" asp-action="Index" class="nav-link">@sharedLocalizer["Supplier"]</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">@sharedLocalizer["Customer"]</a>
+                    <a asp-area="" asp-controller="Customers" asp-action="Index" class="nav-link">@sharedLocalizer["Customer"]</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +52,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a asp-area="Administration" asp-page="/News/Index" class="dropdown-item">@sharedLocalizer["News"]</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">@sharedLocalizer["User"]</a>
+                        <a asp-area="Administration" asp-page="/Users/Index" class="dropdown-item">@sharedLocalizer["Users"]</a>
                     </div>
                 </li>
 
@@ -61,7 +61,7 @@
                         @sharedLocalizer["Owner"]
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a asp-area="Provider" asp-page="/UserRoles/Index" class="dropdown-item">@sharedLocalizer["UserRoles"]</a>
+                        <a asp-area="Provider" asp-page="/Organization/Index" class="dropdown-item">@sharedLocalizer["Organization"]</a>
                     </div>
                 </li>
             </ul>

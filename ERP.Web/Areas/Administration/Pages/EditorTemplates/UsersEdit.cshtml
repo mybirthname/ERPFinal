@@ -1,0 +1,20 @@
+﻿@model Areas.Administration.Pages.Users.EditModel
+
+
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+@inject RoleManager<Role> roleManager;
+
+@{
+    var rows = 5;
+    var roles = new SelectList(roleManager.Roles.Where(x => x.Name != "SuperAdmin").ToList());
+}
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="UserModel.ID" />
+
+<form-control-text-box asp-for="UserModel.FirstName"></form-control-text-box>
+<form-control-text-box asp-for="UserModel.LastName"></form-control-text-box>
+<form-control-text-area asp-for="UserModel.Description" rows="@rows"></form-control-text-area>
+<form-control-text-box asp-for="UserModel.Email"></form-control-text-box>
+<form-control-text-box asp-for="UserModel.PhoneNumber"></form-control-text-box>
+
+<partial name="../_RolePartial" model="Model" />
