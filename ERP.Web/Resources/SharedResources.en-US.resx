@@ -325,7 +325,7 @@
     <value>Add Role</value>
   </data>
   <data name="Organization" xml:space="preserve">
-    <value>Организации</value>
+    <value>Organization</value>
   </data>
   <data name="CantAdd" xml:space="preserve">
     <value>You can't add role which is already added</value>
@@ -335,5 +335,32 @@
   </data>
   <data name="RemoveRole" xml:space="preserve">
     <value>Remove Role</value>
+  </data>
+  <data name="CreateCustomer" xml:space="preserve">
+    <value>Create Customer</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="EditCustomer" xml:space="preserve">
+    <value>Edit Customer</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Organizations</value>
+  </data>
+  <data name="CreateSupplier" xml:space="preserve">
+    <value>Create Supplier</value>
+  </data>
+  <data name="EditSupplier" xml:space="preserve">
+    <value>Edit Supplier</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="ErrorOnOrganizationSave" xml:space="preserve">
+    <value>Error occur when you try to save the data</value>
+  </data>
+  <data name="OrganizationUpdatedSuccessfully" xml:space="preserve">
+    <value>Organization data is saved successfully</value>
   </data>
 </root>

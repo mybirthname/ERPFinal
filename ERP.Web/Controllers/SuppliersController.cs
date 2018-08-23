@@ -7,43 +7,29 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ERP.Data;
 using ERP.Models;
+using ERP.Services.Interfaces;
+using Dtos.Supplier;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ERP.Web.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Supplier")]
     public class SuppliersController : Controller
     {
-        private readonly ERPContext _context;
+        private readonly ISupplierService _service;
 
-        public SuppliersController(ERPContext context)
+        public SuppliersController(ISupplierService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: Suppliers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Suppliers.ToListAsync());
+            var list = await _service.GetAllRecords();
+            return View(list);
         }
 
-        // GET: Suppliers/Details/5
-        public async Task<IActionResult> Details(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var supplier = await _context.Suppliers
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (supplier == null)
-            {
-                return NotFound();
-            }
-
-            return View(supplier);
-        }
-
-        // GET: Suppliers/Create
         public IActionResult Create()
         {
             return View();
@@ -53,32 +39,27 @@ namespace ERP.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,Country,City,Street,ZipCode,Email,Phone,ID,NrIntern,UserID,CreateBy,UpdateBy,CreateDate,UpdateDate,OrganizationID,Remark,Deleted")] Supplier supplier)
+        public async Task<IActionResult> Create(SupplierInputModel model)
         {
-            if (ModelState.IsValid)
-            {
-                supplier.ID = Guid.NewGuid();
-                _context.Add(supplier);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(supplier);
+            if (!ModelState.IsValid)
+                return View(model);
+
+            await _service.CreateNewRecord(model);
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Suppliers/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
-            var supplier = await _context.Suppliers.FindAsync(id);
+            var supplier = await _service.GetByID(id.Value);
+
             if (supplier == null)
-            {
                 return NotFound();
-            }
+
             return View(supplier);
         }
 
@@ -87,68 +68,26 @@ namespace ERP.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Title,Description,Country,City,Street,ZipCode,Email,Phone,ID,NrIntern,UserID,CreateBy,UpdateBy,CreateDate,UpdateDate,OrganizationID,Remark,Deleted")] Supplier supplier)
+        public async Task<IActionResult> Edit(SupplierInputModel model)
         {
-            if (id != supplier.ID)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(supplier);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SupplierExists(supplier.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(supplier);
-        }
+            if (!ModelState.IsValid)
+                return View(model);
+            
 
-        // GET: Suppliers/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            await _service.UpdateRecord(model);
 
-            var supplier = await _context.Suppliers
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (supplier == null)
-            {
-                return NotFound();
-            }
-
-            return View(supplier);
-        }
-
-        // POST: Suppliers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            var supplier = await _context.Suppliers.FindAsync(id);
-            _context.Suppliers.Remove(supplier);
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SupplierExists(Guid id)
+
+
+        // POST: Suppliers/Delete/5
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return _context.Suppliers.Any(e => e.ID == id);
+            await _service.DeleteRecord(id);
+            return RedirectToAction(nameof(Index));
         }
+
     }
 }

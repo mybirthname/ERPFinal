@@ -123,6 +123,9 @@
   <data name="EmailRequired" xml:space="preserve">
     <value>Емайлът е задължително поле</value>
   </data>
+  <data name="NotValidEmail" xml:space="preserve">
+    <value>Невалиден емайл.</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Парола</value>
   </data>

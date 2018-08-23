@@ -70,6 +70,7 @@
 
     });
 
+
     $("#RemoveRoleBtn").click(function () {
 
         $('.role-request-msg').hide();

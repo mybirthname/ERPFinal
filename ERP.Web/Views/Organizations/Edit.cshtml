@@ -1,0 +1,42 @@
+﻿@model Dtos.Organization.OrganizationInputeModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
+@if (TempData["__Message"] != null)
+{
+    var message = new MessageModel();
+    message.Message = TempData["__Message"].ToString();
+    message.Type = TempData["__Type"].ToString();
+
+    <form-control-message type="@message.Type" message="@message.Message"></form-control-message>
+}
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
+    <div class="navbar-brand">@sharedLocalizer["Organization"] </div>
+</nav>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+
+            <form-control-text-box asp-for="Title"></form-control-text-box>
+            <form-control-text-area asp-for="Description"></form-control-text-area>
+            <form-control-text-box asp-for="Country"></form-control-text-box>
+            <form-control-text-box asp-for="City"></form-control-text-box>
+            <form-control-text-box asp-for="Street"></form-control-text-box>
+            <form-control-text-box asp-for="ZipCode"></form-control-text-box>
+            <form-control-text-box asp-for="Email"></form-control-text-box>
+            <form-control-text-box asp-for="Phone"></form-control-text-box>
+            <form-control-text-box asp-for="Remark"></form-control-text-box>
+            <div class="form-group">
+                <input type="submit" value="@sharedLocalizer["Save"]" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

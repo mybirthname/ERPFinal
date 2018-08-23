@@ -328,7 +328,7 @@
     <value>Добавяне на роля</value>
   </data>
   <data name="Organization" xml:space="preserve">
-    <value>Организации</value>
+    <value>Организация</value>
   </data>
   <data name="CantAdd" xml:space="preserve">
     <value>Не може да добавите роля, която вече е добавена</value>
@@ -338,5 +338,32 @@
   </data>
   <data name="RemoveRole" xml:space="preserve">
     <value>Премахване на роля</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Организации</value>
+  </data>
+  <data name="CreateCustomer" xml:space="preserve">
+    <value>Създай клиент</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Клиенти</value>
+  </data>
+  <data name="EditCustomer" xml:space="preserve">
+    <value>Редактирай клиент</value>
+  </data>
+  <data name="CreateSupplier" xml:space="preserve">
+    <value>Създай доставчик</value>
+  </data>
+  <data name="EditSupplier" xml:space="preserve">
+    <value>Редакция на доставчик</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>Доставчици</value>
+  </data>
+  <data name="ErrorOnOrganizationSave" xml:space="preserve">
+    <value>Грешка при опит за запис !</value>
+  </data>
+  <data name="OrganizationUpdatedSuccessfully" xml:space="preserve">
+    <value>Организационната информация е запазена успешно !</value>
   </data>
 </root>

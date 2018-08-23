@@ -9,7 +9,7 @@ namespace Dtos.User
     {
         [Required(ErrorMessage = "EmailRequired")]
         [Display(Name = "Email")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage ="NotValidEmail")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "PasswordRequired")]

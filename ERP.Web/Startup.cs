@@ -24,6 +24,9 @@ using AutoMapper;
 using ERP.Services.Administration;
 using ERP.Services.Interfaces;
 using ERP.Common;
+using ERP.Services.Provider;
+using ERP.Services.Customer;
+using ERP.Services.Supplier;
 
 namespace ERP.Web
 {
@@ -158,6 +161,10 @@ namespace ERP.Web
             services.AddAutoMapper();
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IOrganizationService, OrganizationService>();
+            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+
 
         }
 

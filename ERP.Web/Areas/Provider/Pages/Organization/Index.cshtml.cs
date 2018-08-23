@@ -7,23 +7,25 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ERP.Data;
 using ERP.Models;
+using ERP.Services.Provider;
+using ERP.Services.Interfaces;
 
 namespace ERP.Web.Areas.Provider.Pages.Organization
 {
     public class IndexModel : PageModel
     {
-        private readonly ERP.Data.ERPContext _context;
+        private readonly IOrganizationService _serivce;
 
-        public IndexModel(ERP.Data.ERPContext context)
+        public IndexModel(IOrganizationService serivce)
         {
-            _context = context;
+            _serivce = serivce;
         }
 
         public IList<ERP.Models.Organization> Organization { get;set; }
 
         public async Task OnGetAsync()
         {
-            Organization = await _context.Organizations.ToListAsync();
+            Organization = await _serivce.GetAllOrganizationRecords();
         }
     }
 }

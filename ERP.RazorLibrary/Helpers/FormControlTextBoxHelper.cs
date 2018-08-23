@@ -14,6 +14,9 @@ namespace ERP.RazorLibrary.Helpers
         [HtmlAttributeName("asp-for")]
         public ModelExpression For { get; set; }
 
+        [HtmlAttributeName("asp-disabled")]
+        public bool Disabled { get; set; }
+
         private readonly IHtmlGenerator _generator;
 
         [ViewContext]
@@ -38,12 +41,22 @@ namespace ERP.RazorLibrary.Helpers
 
                 label.WriteTo(writer, NullHtmlEncoder.Default);
 
+                object htmlAttributes = null;
+                if(Disabled)
+                {
+                    htmlAttributes = new { @class = "form-control", @disabled = "disabled" };
+                }
+                else
+                {
+                    htmlAttributes = new { @class = "form-control" };
+                }
+
                 var textArea = _generator.GenerateTextBox(ViewContext, 
                                     For.ModelExplorer, 
                                     For.Name, 
                                     For.Model, 
-                                    null, 
-                                    new { @class = "form-control" });
+                                    null,
+                                    htmlAttributes);
 
                 textArea.WriteTo(writer, NullHtmlEncoder.Default);
 

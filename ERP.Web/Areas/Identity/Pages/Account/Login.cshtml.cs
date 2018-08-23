@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using Dtos.User;
+using ERP.Services.Interfaces;
 
 namespace ERP.Web.Areas.Identity.Pages.Account
 {
@@ -23,12 +24,14 @@ namespace ERP.Web.Areas.Identity.Pages.Account
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IOrganizationService _organizationService;
 
-        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger, IHttpContextAccessor httpContextAccessor)
+        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger, IHttpContextAccessor httpContextAccessor, IOrganizationService organizationService)
         {
             _signInManager = signInManager;
             _logger = logger;
             _httpContextAccessor = httpContextAccessor;
+            _organizationService = organizationService;
         }
 
         [BindProperty]
@@ -77,7 +80,14 @@ namespace ERP.Web.Areas.Identity.Pages.Account
                         CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(Input.Language))
                     );
 
-                    //var userRecord = _signInManager.UserManager.Users.ToList().First();  
+                    var userRecord = _signInManager.UserManager.Users.FirstOrDefault(x=> x.Email == Input.Email);
+                    var organization = await _organizationService.GetOrganizationByID(userRecord.OrganizationID);
+
+                    if(organization.Deleted == 1)
+                    {
+                        ErrorMessage = "Login Attempt Failed";
+                        return LocalRedirect($"~/Identity/Account/Login?ReturnUrl={ReturnUrl}");
+                    }
 
                     //_httpContextAccessor.HttpContext.Session.SetInt32("OrganizationID", userRecord.OrganizationID);
                     //_httpContextAccessor.HttpContext.Session.SetString("UserID", userRecord.Id);

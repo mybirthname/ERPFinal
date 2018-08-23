@@ -13,7 +13,7 @@ namespace ERP.Common
     public class SettingUserSessionPageFilter : IAsyncPageFilter
     {
         private readonly UserManager<User> _userManager;
-        private readonly UserSession _userSession;
+        private UserSession _userSession;
 
         public SettingUserSessionPageFilter(UserManager<User> userManager, UserSession userSession)
         {
@@ -30,14 +30,25 @@ namespace ERP.Common
                 return;
             }
 
+            var currentUser = await _userManager.GetUserAsync(context.HttpContext.User);
+
             if (context.HttpContext.Session.GetString("__UserSession") != null)
             {
+                _userSession = JsonConvert.DeserializeObject<UserSession>(context.HttpContext.Session.GetString("__UserSession"));
+
+                if(_userSession.UserID != currentUser.Id)
+                    SetUserSession(context, currentUser);
+
                 await next();
                 return;
             }
+            SetUserSession(context, currentUser);
 
-            var currentUser = await _userManager.GetUserAsync(context.HttpContext.User);
+            await next();
+        }
 
+        private void SetUserSession(PageHandlerExecutingContext context, User currentUser)
+        {
             _userSession.OrganizationID = currentUser.OrganizationID;
             _userSession.UserID = currentUser.Id;
             _userSession.UserFullName = currentUser.LastName + ", " + currentUser.FirstName;
@@ -46,7 +57,6 @@ namespace ERP.Common
 
             context.HttpContext.Session.SetString("__UserSession", result);
 
-            await next();
         }
 
 

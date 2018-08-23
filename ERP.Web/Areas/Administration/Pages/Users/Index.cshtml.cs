@@ -28,5 +28,12 @@ namespace ERP.Web.Areas.Administration.Pages.Users
         {
             Users = await _service.GetAllUsersRecords();
         }
+
+        public async Task OnPostDelete(string id)
+        {
+            await _service.DeleteRecord(id);
+            Users = await _service.GetAllUsersRecords();
+        }
+
     }
 }

@@ -1,0 +1,15 @@
+﻿@model EditModel
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="Organization.ID" />
+
+<form-control-text-box asp-for="Organization.Title" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="Organization.Description" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="Organization.Country" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="Organization.City" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="Organization.Street" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="Organization.ZipCode" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="Organization.Email" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="Organization.Phone" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="Organization.Remark" asp-disabled="true"></form-control-text-box>

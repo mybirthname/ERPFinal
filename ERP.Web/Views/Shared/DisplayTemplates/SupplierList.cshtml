@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ERP.Models.Supplier>
+
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.NrIntern)</a>
+
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Title)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+
+        <td>
+            <form method="post">
+                <input name="id" id="id" value="@item.ID" type="hidden" />
+                <button type="submit" asp-controller="Suppliers" class="btn btn-danger" asp-route-id="@item.ID" asp-action="Delete">@sharedLocalizer["Delete"]</button>
+            </form>
+        </td>
+    </tr>
+}
+
+
+

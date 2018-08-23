@@ -81,7 +81,6 @@ namespace ERP.Services.Administration
                 result.Message = "CantAdd";
 
                 return result;
-
             }
 
             await _manager.AddToRoleAsync(user, role.Role);
