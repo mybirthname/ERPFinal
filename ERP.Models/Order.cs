@@ -13,6 +13,7 @@ namespace ERP.Models
         }
 
         [Required]
+        [Display(Name = "_Title")]
         [StringLength(FieldLengthConstants.StandardFieldLength)]
         public string Title { get; set; }
 
@@ -20,15 +21,22 @@ namespace ERP.Models
         public string Description { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime SendDate { get; set; }
+        [Display(Name ="_SendDate")]
+        public DateTime? SendDate { get; set; }
 
+        [Display(Name ="_Status")]
         public int Status { get; set; }
 
         [Range(0, int.MaxValue)]
+        [Display(Name ="_AmountNet")]
         public decimal AmountNet { get; set; }
 
         public Guid? SupplierOrganizationID { get; set; }
 
         public Guid? SupplierID { get; set; }
+
+        public DateTime? DeliveryDate { get; set; }
+
+        public string AttachmentPath { get; set; }
     }
 }

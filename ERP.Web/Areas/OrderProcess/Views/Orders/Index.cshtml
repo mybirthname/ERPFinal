@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ERP.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
+    <div class="navbar-brand">@sharedLocalizer["Orders"] </div>
+</nav>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NrIntern)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SendDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountNet)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayForModel("OrganizationList")
+    </tbody>
+</table>
+
+<a asp-area="OrderProcess" asp-controller="Orders" asp-action="Create" class="btn btn-primary">@sharedLocalizer["CreateOrder"]</a>
+

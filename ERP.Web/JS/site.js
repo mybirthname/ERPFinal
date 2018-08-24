@@ -1,23 +1,22 @@
 ﻿$(document).ready(function () {
 
+    if (sessionStorage.getItem("ElementID") != null) {
+
+        $("li.nav-item").each(function (index) {
+            $(this).removeClass("active");
+        });
+
+        var element = $('#' + sessionStorage.getItem("ElementID"));
+        element.addClass("active");
+    }
+    else {
+        $('#HomeMenu').addClass("active");
+    }
+
+
     $(".nav-link").click(function () {
-
-        $("li.nav-item").each(function (index) {
-            $(this).removeClass("active");
-        });
-
         var menuItem = $(this).closest("li");
-        menuItem.addClass("active");
-
-    });
-    $(".dropdown-item").click(function () {
-
-        $("li.nav-item").each(function (index) {
-            $(this).removeClass("active");
-        });
-
-        var menuItem = $(this).closest("li");
-        menuItem.addClass("active");
+        sessionStorage.setItem("ElementID", menuItem.attr("id"));
     });
 
 

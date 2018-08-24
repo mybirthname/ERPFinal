@@ -366,4 +366,10 @@
   <data name="OrganizationUpdatedSuccessfully" xml:space="preserve">
     <value>Организационната информация е запазена успешно !</value>
   </data>
+  <data name="CreateOrder" xml:space="preserve">
+    <value>Създаване на поръчка</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Поръчки</value>
+  </data>
 </root>

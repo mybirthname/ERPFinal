@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ERP.Web.Controllers
 {
-    [Authorize(Roles = "SuperAdmin, Supplier")]
+    [Authorize(Policy = "SupplierPolicy")]
     public class SuppliersController : Controller
     {
         private readonly ISupplierService _service;

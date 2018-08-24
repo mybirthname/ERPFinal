@@ -1,0 +1,29 @@
+﻿@model ERP.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form-control-text-box asp-for="NrIntern"></form-control-text-box>
+            <form-control-text-box asp-for="Title"></form-control-text-box>
+            <form-control-text-area asp-for="Description"></form-control-text-area>
+            <form-control-text-box asp-for="Remark"></form-control-text-box>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

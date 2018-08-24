@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ERP.Web.Controllers
 {
-    [Authorize(Roles = "SuperAdmin, Customer")]
+    [Authorize(Policy = "CustomerPolicy")]
     public class CustomersController : Controller
     {
         private readonly ICustomerService _service;

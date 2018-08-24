@@ -72,6 +72,15 @@ namespace ERP.Web
 
             AddCustomServices(services);
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy => policy.RequireRole("SuperAdmin"));
+                options.AddPolicy("OrderPolicy", policy => policy.RequireRole("SuperAdmin", "Order"));
+                options.AddPolicy("CustomerPolicy", policy => policy.RequireRole("SuperAdmin", "Customer"));
+                options.AddPolicy("SupplierPolicy", policy => policy.RequireRole("SuperAdmin", "Supplier"));
+                options.AddPolicy("InvoicePolicy", policy => policy.RequireRole("SuperAdmin", "Invoice"));
+            });
+
             services
                 .AddMvc(options=> 
                 {
@@ -81,8 +90,9 @@ namespace ERP.Web
                 .AddRazorPagesOptions(options=>
                 {
                     options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
-                    options.Conventions.AuthorizeAreaFolder("Administration", "/News");
-                    options.Conventions.AuthorizeAreaFolder("Provider", "/UserRoles");
+                    options.Conventions.AuthorizeAreaFolder("Administration", "/News", "AdminPolicy");
+                    options.Conventions.AuthorizeAreaFolder("Administration", "/Users", "AdminPolicy");
+                    options.Conventions.AuthorizeAreaFolder("Provider", "/Organization", "AdminPolicy");
                 })
                 .AddDataAnnotationsLocalization()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

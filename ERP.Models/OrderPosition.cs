@@ -30,6 +30,8 @@ namespace ERP.Models
 
         public Order Order { get; set; }
 
+        public string AttachmentPath { get; set; }
+
         [StringLength(FieldLengthConstants.DescriptionLength)]
         public string Description { get; set; }
 

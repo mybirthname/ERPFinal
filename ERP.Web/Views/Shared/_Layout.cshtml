@@ -19,6 +19,12 @@
 
     var user = await userManager.GetUserAsync(User);
     var roles = await userManager.GetRolesAsync(user);
+    bool seeOrderProcess = roles.Contains("SuperAdmin") || roles.Contains("Order") || roles.Contains("StockReceipt") || roles.Contains("Invoice");
+    bool seeOrder = roles.Contains("SuperAdmin") || roles.Contains("Order");
+    bool seeInvoice = roles.Contains("SuperAdmin") || roles.Contains("Invoice");
+    bool seeStockReceipt = roles.Contains("SuperAdmin") || roles.Contains("StockReceipt");
+    bool seeSupplier = roles.Contains("SuperAdmin") || roles.Contains("Supplier");
+    bool seeCustomer = roles.Contains("SuperAdmin") || roles.Contains("Customer"); 
 }
 
 <body>
@@ -32,39 +38,50 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item" id="HomeMenu">
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">@sharedLocalizer["Home"]</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" id="OrganizationMenu">
                     <a asp-area="" asp-controller="Organizations" asp-action="Edit" asp-route-id="@userSession.OrganizationID" class="nav-link">@sharedLocalizer["Organization"]</a>
                 </li>
 
-                @if (roles.Contains("SuperAdmin") || roles.Contains("Order") || roles.Contains("StockReceipt") || roles.Contains("Invoice"))
+                @if (seeOrderProcess)
                 {
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" id="OrderProcessMenu">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @sharedLocalizer["OrderProcess"]
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">@sharedLocalizer["Order"]</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">@sharedLocalizer["StockReceipt"]</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">@sharedLocalizer["Invoice"]</a>
+                            @if (seeOrder)
+                            {
+                                <a class="dropdown-item" asp-area="OrderProcess" asp-controller="Orders" asp-action="Index">@sharedLocalizer["Order"]</a>
+                                <div class="dropdown-divider"></div>
+                            }
+                            @if (seeStockReceipt)
+                            {
+                                <a class="dropdown-item" href="#">@sharedLocalizer["StockReceipt"]</a>
+                                <div class="dropdown-divider"></div>
+
+                            }
+                            @if (seeInvoice)
+                            {
+                                <a class="dropdown-item" href="#">@sharedLocalizer["Invoice"]</a>
+                                <div class="dropdown-divider"></div>
+                            }
                         </div>
                     </li>
                 }
 
-                @if (roles.Contains("Supplier") || roles.Contains("SuperAdmin"))
+                @if (seeSupplier)
                 {
-                    <li class="nav-item">
+                    <li class="nav-item" id="SupplierMenu">
                         <a asp-area="" asp-controller="Suppliers" asp-action="Index" class="nav-link">@sharedLocalizer["Supplier"]</a>
                     </li>
                 }
-                @if (roles.Contains("Customer") || roles.Contains("SuperAdmin"))
+                @if (seeCustomer)
                 {
-                    <li class="nav-item">
+                    <li class="nav-item" id="CustomerMenu">
                         <a asp-area="" asp-controller="Customers" asp-action="Index" class="nav-link">@sharedLocalizer["Customer"]</a>
                     </li>
                 }
@@ -72,7 +89,7 @@
 
                 @if (roles.Contains("SuperAdmin"))
                 {
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" id="AdministrationMenu">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @sharedLocalizer["Administration"]
                         </a>
@@ -87,7 +104,7 @@
 
                 @if (userSession.IsSuperProvider && roles.Contains("SuperAdmin"))
                 {
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" id="OwnerMenu">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @sharedLocalizer["Owner"]
                         </a>
@@ -117,6 +134,7 @@
             <p>&copy; @DateTime.Now.Year - @sharedLocalizer["ERPSystem"]</p>
         </footer>
     </div>
+
     <script src="~/js/globalJs.min.js"></script>
 
     @RenderSection("Scripts", required: false)

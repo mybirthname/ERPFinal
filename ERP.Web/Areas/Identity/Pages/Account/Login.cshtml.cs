@@ -83,12 +83,6 @@ namespace ERP.Web.Areas.Identity.Pages.Account
                     var userRecord = _signInManager.UserManager.Users.FirstOrDefault(x=> x.Email == Input.Email);
                     var organization = await _organizationService.GetOrganizationByID(userRecord.OrganizationID);
 
-                    if(organization.Deleted == 1)
-                    {
-                        ErrorMessage = "Login Attempt Failed";
-                        return LocalRedirect($"~/Identity/Account/Login?ReturnUrl={ReturnUrl}");
-                    }
-
                     //_httpContextAccessor.HttpContext.Session.SetInt32("OrganizationID", userRecord.OrganizationID);
                     //_httpContextAccessor.HttpContext.Session.SetString("UserID", userRecord.Id);
 

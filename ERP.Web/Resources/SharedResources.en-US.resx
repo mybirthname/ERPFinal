@@ -363,4 +363,7 @@
   <data name="OrganizationUpdatedSuccessfully" xml:space="preserve">
     <value>Organization data is saved successfully</value>
   </data>
+  <data name="CreateOrder" xml:space="preserve">
+    <value>Create Order</value>
+  </data>
 </root>
