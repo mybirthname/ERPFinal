@@ -10,7 +10,7 @@ using ERP.Models;
 using Dtos.User;
 using ERP.Services.Administration;
 using ERP.Services.Interfaces;
-using ERP.Common.Filters;
+using ERP.Common;
 
 namespace ERP.Web.Areas.Administration.Pages.Users
 {
