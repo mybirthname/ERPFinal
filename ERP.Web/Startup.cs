@@ -27,6 +27,7 @@ using ERP.Common;
 using ERP.Services.Provider;
 using ERP.Services.Customer;
 using ERP.Services.Supplier;
+using ERP.Common.Filters;
 
 namespace ERP.Web
 {
@@ -81,11 +82,14 @@ namespace ERP.Web
                 options.AddPolicy("InvoicePolicy", policy => policy.RequireRole("SuperAdmin", "Invoice"));
             });
 
+
             services
                 .AddMvc(options=> 
                 {
                     options.Filters.Add<SettingUserSessionFilter>();
                     options.Filters.Add<SettingUserSessionPageFilter>();
+                    options.Filters.Add<LoggingFilter>();
+                    options.Filters.Add<ExceptionFilter>();
                 })
                 .AddRazorPagesOptions(options=>
                 {

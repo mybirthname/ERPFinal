@@ -32,6 +32,7 @@ namespace ERP.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var model = await _newsService.GetTop3();
+            throw new Exception("test");
 
             return View(model);
         }
