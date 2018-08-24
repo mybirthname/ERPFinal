@@ -1,29 +1,27 @@
-﻿@model ERP.Models.Order
+﻿@model Dtos.OrderProcess.OrderInputModel
 
-@{
-    ViewData["Title"] = "Create";
-}
+@inject IStringLocalizer<SharedResources> sharedLocalizer
 
-<h2>Create</h2>
+<nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
+    <div class="navbar-brand">@sharedLocalizer["Order"] </div>
+</nav>
 
-<h4>Order</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <form-control-text-box asp-for="NrIntern"></form-control-text-box>
-            <form-control-text-box asp-for="Title"></form-control-text-box>
-            <form-control-text-area asp-for="Description"></form-control-text-area>
-            <form-control-text-box asp-for="Remark"></form-control-text-box>
+
+            @Html.EditorForModel("OrderEdit")
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="@sharedLocalizer["Create"]" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-light">@sharedLocalizer["BackToList"]</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

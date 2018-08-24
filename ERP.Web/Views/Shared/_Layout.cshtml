@@ -66,7 +66,7 @@
                             }
                             @if (seeInvoice)
                             {
-                                <a class="dropdown-item" href="#">@sharedLocalizer["Invoice"]</a>
+                                <a class="dropdown-item" asp-area="OrderProcess" asp-controller="Invoices" asp-action="Index">@sharedLocalizer["Invoice"]</a>
                                 <div class="dropdown-divider"></div>
                             }
                         </div>

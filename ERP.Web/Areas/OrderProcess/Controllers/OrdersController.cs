@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using ERP.Data;
 using ERP.Models;
 using Microsoft.AspNetCore.Authorization;
+using ERP.Services.Interfaces;
+using Dtos.OrderProcess;
 
 namespace ERP.Web.Areas.OrderProcess.Controllers
 {
@@ -15,143 +17,70 @@ namespace ERP.Web.Areas.OrderProcess.Controllers
     [Authorize(Policy = "OrderPolicy")]
     public class OrdersController : Controller
     {
-        private readonly ERPContext _context;
 
-        public OrdersController(ERPContext context)
+        private readonly IOrderService _service;
+
+        public OrdersController(IOrderService service)
         {
-            _context = context;
+            _service = service;
         }
 
-        // GET: OrderProcess/Orders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Orders.ToListAsync());
+            var model = await _service.GetAllRecords();
+
+            return View(model);
         }
 
-        // GET: OrderProcess/Orders/Details/5
-        public async Task<IActionResult> Details(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var order = await _context.Orders
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            return View(order);
-        }
-
-        // GET: OrderProcess/Orders/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: OrderProcess/Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,SendDate,Status,AmountNet,SupplierOrganizationID,SupplierID,ID,NrIntern,UserID,CreateBy,UpdateBy,CreateDate,UpdateDate,OrganizationID,Remark,Deleted")] Order order)
+        public async Task<IActionResult> Create(OrderInputModel model)
         {
-            if (ModelState.IsValid)
-            {
-                order.ID = Guid.NewGuid();
-                _context.Add(order);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(order);
+            if (!ModelState.IsValid)
+                return View(model);
+
+            await _service.CreateNewRecord(model);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: OrderProcess/Orders/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _service.GetByID(id.Value);
+
             if (order == null)
-            {
                 return NotFound();
-            }
+
             return View(order);
         }
 
-        // POST: OrderProcess/Orders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Title,Description,SendDate,Status,AmountNet,SupplierOrganizationID,SupplierID,ID,NrIntern,UserID,CreateBy,UpdateBy,CreateDate,UpdateDate,OrganizationID,Remark,Deleted")] Order order)
+        public async Task<IActionResult> Edit(OrderInputModel model)
         {
-            if (id != order.ID)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OrderExists(order.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(order);
-        }
+            if (!ModelState.IsValid)
+                return View(model);
 
-        // GET: OrderProcess/Orders/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            await _service.UpdateRecord(model);
 
-            var order = await _context.Orders
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            return View(order);
-        }
-
-        // POST: OrderProcess/Orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            var order = await _context.Orders.FindAsync(id);
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OrderExists(Guid id)
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return _context.Orders.Any(e => e.ID == id);
+            await _service.DeleteRecord(id);
+            return RedirectToAction(nameof(Index));
         }
+
+
     }
 }

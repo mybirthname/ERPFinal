@@ -39,11 +39,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="SupplierOrganizationID" class="control-label"></label>
-                <select asp-for="SupplierOrganizationID" class ="form-control" asp-items="ViewBag.SupplierOrganizationID"></select>
+                <select asp-for="SupplierOrganizationID" class="form-control" asp-items="ViewBag.SupplierOrganizationID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="OrderID" class="control-label"></label>
-                <select asp-for="OrderID" class ="form-control" asp-items="ViewBag.OrderID"></select>
+                <select asp-for="OrderID" class="form-control" asp-items="ViewBag.OrderID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="NrIntern" class="control-label"></label>
@@ -100,4 +100,8 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 

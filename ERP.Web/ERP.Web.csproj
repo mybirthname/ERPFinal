@@ -46,7 +46,10 @@
     <Content Update="Areas\Administration\Pages\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\OrderProcess\Views\Shared\DisplayTemplates\OrganizationList.cshtml">
+    <Content Update="Areas\OrderProcess\Views\Shared\DisplayTemplates\OrderList.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\OrderProcess\Views\Shared\EditorTemplates\OrderEdit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Areas\OrderProcess\Views\_ViewImports.cshtml">
@@ -82,10 +85,6 @@
     <Content Update="Views\Shared\EditorTemplates\CustomerEdit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\OrderProcess\Views\Shared\EditorTemplates\" />
   </ItemGroup>
 
 </Project>

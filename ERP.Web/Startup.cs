@@ -28,6 +28,7 @@ using ERP.Services.Provider;
 using ERP.Services.Customer;
 using ERP.Services.Supplier;
 using ERP.Common.Filters;
+using ERP.Services.OrderProcess;
 
 namespace ERP.Web
 {
@@ -178,8 +179,7 @@ namespace ERP.Web
             services.AddScoped<IOrganizationService, OrganizationService>();
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<ICustomerService, CustomerService>();
-
-
+            services.AddScoped<IOrderService, OrderService>();
         }
 
         private void AddLocalizationService(IServiceCollection services)

@@ -4,6 +4,7 @@ using System.Text;
 using AutoMapper;
 using Dtos.Administration.News;
 using Dtos.Customer;
+using Dtos.OrderProcess;
 using Dtos.Organization;
 using Dtos.Supplier;
 using Dtos.User;
@@ -20,6 +21,7 @@ namespace Common
             this.CreateMap<CustomerInputeModel, Customer>().ReverseMap();
             this.CreateMap<SupplierInputModel, Supplier>().ReverseMap();
             this.CreateMap<OrganizationInputeModel, Organization>().ReverseMap();
+            this.CreateMap<OrderInputModel, Order>().ReverseMap();
 
             this.CreateMap<CustomerInputeModel, Organization>().ForMember(x => x.ID, opt => opt.Ignore());
             this.CreateMap<SupplierInputModel, Organization>().ForMember(x => x.ID, opt => opt.Ignore());
