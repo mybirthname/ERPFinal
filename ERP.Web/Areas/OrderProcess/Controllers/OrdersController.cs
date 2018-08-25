@@ -58,6 +58,9 @@ namespace ERP.Web.Areas.OrderProcess.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(OrderInputModel model)
         {
+            var suppliers = await _service.GetSupplierAsync();
+            ViewBag.Suppliers = new SelectList(suppliers, "ID", "Title");
+
             if (!ModelState.IsValid)
                 return View(model);
 
@@ -67,12 +70,11 @@ namespace ERP.Web.Areas.OrderProcess.Controllers
 
         public async Task<IActionResult> Edit(Guid? id)
         {
+            var suppliers = await _service.GetSupplierAsync();
+            ViewBag.Suppliers = new SelectList(suppliers, "ID", "Title");
+
             if (id == null)
                 return NotFound();
-
-            var suppliers = await _service.GetSupplierAsync();
-
-            ViewBag.Suppliers = new SelectList(suppliers, "ID", "Title");
 
             var order = await _service.GetByID(id.Value);
 
@@ -83,8 +85,34 @@ namespace ERP.Web.Areas.OrderProcess.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Send(Guid id)
+        {
+            var model = await _service.SetStatus((int)ERP.Common.Enumerations.OrderStatus.Sent, id);
+
+            return RedirectToAction("Edit", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Reject(Guid id)
+        {
+            var model = await _service.SetStatus((int)ERP.Common.Enumerations.OrderStatus.Rejected, id);
+
+            return RedirectToAction("Edit", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Confirm(Guid id)
+        {
+            var model = await _service.SetStatus((int)ERP.Common.Enumerations.OrderStatus.Confirm, id);
+
+            return RedirectToAction("Edit", model);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Edit(OrderInputModel model)
         {
+            var suppliers = await _service.GetSupplierAsync();
+            ViewBag.Suppliers = new SelectList(suppliers, "ID", "Title");
 
             if (!ModelState.IsValid)
                 return View(model);

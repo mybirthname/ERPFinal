@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ERP.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,8 +41,8 @@ namespace ERP.Data.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: true),
-                    LastName = table.Column<string>(maxLength: 50, nullable: true),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 4000, nullable: true),
                     CreateBy = table.Column<string>(maxLength: 50, nullable: true),
                     UpdateBy = table.Column<string>(maxLength: 50, nullable: true),
@@ -69,13 +69,14 @@ namespace ERP.Data.Migrations
                     OrganizationID = table.Column<Guid>(nullable: false),
                     Remark = table.Column<string>(maxLength: 500, nullable: true),
                     Deleted = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(maxLength: 50, nullable: true),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 4000, nullable: true),
                     Country = table.Column<string>(maxLength: 50, nullable: true),
                     City = table.Column<string>(maxLength: 50, nullable: true),
                     Street = table.Column<string>(maxLength: 50, nullable: true),
                     ZipCode = table.Column<string>(maxLength: 10, nullable: true),
-                    Email = table.Column<string>(maxLength: 50, nullable: true),
+                    Email = table.Column<string>(maxLength: 50, nullable: false),
+                    CustomerOrganizationID = table.Column<Guid>(nullable: false),
                     Phone = table.Column<string>(maxLength: 20, nullable: true)
                 },
                 constraints: table =>
@@ -136,11 +137,15 @@ namespace ERP.Data.Migrations
                     Deleted = table.Column<int>(nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 4000, nullable: true),
-                    SendDate = table.Column<DateTime>(nullable: false),
+                    SendDate = table.Column<DateTime>(nullable: true),
                     Status = table.Column<int>(nullable: false),
-                    AmountNet = table.Column<decimal>(nullable: false),
+                    AmountNet = table.Column<int>(nullable: false),
                     SupplierOrganizationID = table.Column<Guid>(nullable: true),
-                    SupplierID = table.Column<Guid>(nullable: true)
+                    SupplierID = table.Column<Guid>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    Price = table.Column<int>(nullable: false),
+                    DeliveryDate = table.Column<DateTime>(nullable: true),
+                    AttachmentPath = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -187,13 +192,14 @@ namespace ERP.Data.Migrations
                     OrganizationID = table.Column<Guid>(nullable: false),
                     Remark = table.Column<string>(maxLength: 500, nullable: true),
                     Deleted = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(maxLength: 50, nullable: true),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 4000, nullable: true),
                     Country = table.Column<string>(maxLength: 50, nullable: true),
                     City = table.Column<string>(maxLength: 50, nullable: true),
                     Street = table.Column<string>(maxLength: 50, nullable: true),
                     ZipCode = table.Column<string>(maxLength: 10, nullable: true),
                     Email = table.Column<string>(maxLength: 50, nullable: true),
+                    SupplierOrganizationID = table.Column<Guid>(nullable: false),
                     Phone = table.Column<string>(maxLength: 20, nullable: true)
                 },
                 constraints: table =>
@@ -325,6 +331,7 @@ namespace ERP.Data.Migrations
                     Quantity = table.Column<int>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     OrderID = table.Column<Guid>(nullable: false),
+                    AttachmentPath = table.Column<string>(nullable: true),
                     Description = table.Column<string>(maxLength: 4000, nullable: true)
                 },
                 constraints: table =>
@@ -474,17 +481,25 @@ namespace ERP.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "065548f8-a5a6-4e2a-a30f-000b8d109ed2", "33542a57-fb53-4b65-9477-41252131984e", "SuperAdmin", "SUPERADMIN" });
+                values: new object[,]
+                {
+                    { "065548f8-a5a6-4e2a-a30f-000b8d109ed2", "c7602496-d764-4a7f-9aed-b76f2f39e68d", "SuperAdmin", "SUPERADMIN" },
+                    { "d2484b7a-d555-49de-9aa8-dae591651a18", "e2ab21c1-2fb4-4a8b-a1fe-c15b47a44064", "Order", "ORDER" },
+                    { "314705da-cec4-4cac-a164-84dea9e6fafe", "a1c53435-5946-4b68-83b6-9176182c7cf4", "StockReceipt", "STOCKRECEIPT" },
+                    { "a04d4a79-7829-4014-8199-8127840db3fe", "832e2a52-49ec-4519-90d6-92d2e40f4d72", "Invoice", "INVOICE" },
+                    { "8bc867b3-01a6-4e51-999a-598bb6e1cbd3", "ba97e85d-355c-4563-bd4d-c6b159509d89", "Supplier", "SUPPLIER" },
+                    { "e875c0ba-a379-4114-8c9a-3493feb737e9", "5d40b982-7da6-48ea-939f-38a566773e88", "Customer", "CUSTOMER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateBy", "CreateDate", "Description", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "OrganizationID", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdateBy", "UpdateDate", "UserName" },
-                values: new object[] { "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", 0, "e255971d-bdb1-4281-9e5f-593cb4d95d97", "Automatic Seed Function", new DateTime(2018, 8, 19, 2, 32, 29, 903, DateTimeKind.Local), null, "martin.stanchev87@gmail.com", true, "Martin", "Stanchev", false, null, "MARTIN.STANCHEV87@GMAIL.COM", "MARTIN.STANCHEV87@GMAIL.COM", new Guid("065548f8-a5a6-4e2a-a30f-000b8d109ed2"), "AQAAAAEAACcQAAAAEHGkmG2aw1+J6VLOsY+Lp+Xx7Yog2klxJ8cvgcKJvv3JFs4Pq4qklW7t0p3kssQ5FA==", null, false, "878c50ab-59bc-4ed9-96b9-3a92bb87641c", false, "Automatic Seed Function", new DateTime(2018, 8, 19, 2, 32, 29, 904, DateTimeKind.Local), "martin.stanchev87@gmail.com" });
+                values: new object[] { "49dc92d3-0025-42eb-8bc0-b3c3acde0f39", 0, "e1b8900d-3d8c-4989-8fc0-9251ed3e9fa7", "Automatic Seed Function", new DateTime(2018, 8, 26, 0, 20, 23, 954, DateTimeKind.Local), null, "martin.stanchev87@gmail.com", true, "Martin", "Stanchev", false, null, "MARTIN.STANCHEV87@GMAIL.COM", "MARTIN.STANCHEV87@GMAIL.COM", new Guid("065548f8-a5a6-4e2a-a30f-000b8d109ed2"), "AQAAAAEAACcQAAAAEHP/wuxDATM8MUW7F9RlWPOCGKBZhQ+biqGX56V7KGrmDEJk3opUBKWg30n3mfr0lw==", null, false, "2fbd3b0a-e9cd-4d02-b173-6cf4c07f5ca4", false, "Automatic Seed Function", new DateTime(2018, 8, 26, 0, 20, 23, 956, DateTimeKind.Local), "martin.stanchev87@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "Organizations",
                 columns: new[] { "ID", "City", "Country", "CreateBy", "CreateDate", "Deleted", "Description", "Email", "Phone", "ProviderOrganizationID", "Remark", "Street", "Title", "UpdateBy", "UpdateDate", "ZipCode" },
-                values: new object[] { new Guid("065548f8-a5a6-4e2a-a30f-000b8d109ed2"), "Sofia", "Bulgaria", "Automatic Seed Function", new DateTime(2018, 8, 19, 2, 32, 29, 917, DateTimeKind.Local), 0, "Organization of the company which provides ", "ContactCompanyEmail@CompanyDomain.com", "+359 888 123 456", new Guid("00000000-0000-0000-0000-000000000000"), "Values are filled automatically", null, "Provider Organization", "Automatic Seed Function", new DateTime(2018, 8, 19, 2, 32, 29, 917, DateTimeKind.Local), "1000" });
+                values: new object[] { new Guid("065548f8-a5a6-4e2a-a30f-000b8d109ed2"), "Sofia", "Bulgaria", "Automatic Seed Function", new DateTime(2018, 8, 26, 0, 20, 23, 974, DateTimeKind.Local), 0, "Organization of the company which provides ", "ContactCompanyEmail@CompanyDomain.com", "+359 888 123 456", new Guid("00000000-0000-0000-0000-000000000000"), "Values are filled automatically", null, "Provider Organization", "Automatic Seed Function", new DateTime(2018, 8, 26, 0, 20, 23, 974, DateTimeKind.Local), "1000" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

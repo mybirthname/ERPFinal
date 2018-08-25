@@ -16,5 +16,6 @@ namespace ERP.Services.Interfaces
         Task DeleteRecord(Guid id);
         Task<List<ERP.Models.Supplier>> GetSupplierAsync();
         Task<List<ERP.Models.Order>> GetFilterRecords(string searchTerm);
+        Task<OrderInputModel> SetStatus(int status, Guid id);
     }
 }

@@ -25,6 +25,8 @@
     bool seeStockReceipt = roles.Contains("SuperAdmin") || roles.Contains("StockReceipt");
     bool seeSupplier = roles.Contains("SuperAdmin") || roles.Contains("Supplier");
     bool seeCustomer = roles.Contains("SuperAdmin") || roles.Contains("Customer"); 
+
+    
 }
 
 <body>
@@ -57,20 +59,6 @@
                             {
                                 <a class="dropdown-item" asp-area="OrderProcess" asp-controller="Orders" asp-action="Index">@sharedLocalizer["Order"]</a>
                                 <div class="dropdown-divider"></div>
-                            }
-                            @if (seeStockReceipt)
-                            {
-                                <a class="dropdown-item" href="#">@sharedLocalizer["StockReceipt"]</a>
-                                <div class="dropdown-divider"></div>
-
-                            }
-                            @if (seeInvoice)
-                            {
-                                <a class="dropdown-item" asp-area="OrderProcess" asp-controller="Invoices" asp-action="Index">@sharedLocalizer["Invoice"]</a>
-                                <div class="dropdown-divider"></div>
-                            }
-                            @if (seeOrder)
-                            {
                                 <a class="dropdown-item" asp-area="OrderProcess" asp-controller="Orders" asp-action="SalesIndex">@sharedLocalizer["SalesOrder"]</a>
                                 <div class="dropdown-divider"></div>
                             }

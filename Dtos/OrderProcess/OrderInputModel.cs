@@ -1,4 +1,5 @@
-﻿using ERP.Common.ModelConstants;
+﻿using Dtos.Filters;
+using ERP.Common.ModelConstants;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,9 @@ namespace Dtos.OrderProcess
         public OrderInputModel()
         {
             AmountNet = 0;
+            Status = 5;
+            Quantity = 1;
+            Price = 0;
         }
 
         public Guid ID { get; set; }
@@ -47,10 +51,22 @@ namespace Dtos.OrderProcess
 
         [Range(0, int.MaxValue)]
         [Display(Name = "_AmountNet")]
-        public decimal AmountNet { get; set; }
+        public int AmountNet { get; set; }
+
+        [Required(ErrorMessage ="_QuantityRequired")]
+        [Range(0, int.MaxValue)]
+        [Display(Name ="_Quantity")]
+        public int Quantity { get; set; }
+
+        [Required(ErrorMessage = "_PriceRequired")]
+        [Range(0, int.MaxValue)]
+        [Display(Name = "_Price")]
+        public int Price { get; set; }
 
         [Display(Name = "_DeliveryDate")]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "_DeliveryDateRequired")]
+        [ValidateDateAttribute]
         public DateTime? DeliveryDate { get; set; }
 
         [Display(Name ="_CompanyName")]
@@ -63,5 +79,7 @@ namespace Dtos.OrderProcess
         public string CreateBy { get; set; }
 
         public int Status { get; set; }
+
+        public Guid OrganizationID { get; set; }
     }
 }

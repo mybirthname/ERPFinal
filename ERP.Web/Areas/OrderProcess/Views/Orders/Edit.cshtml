@@ -1,10 +1,45 @@
 ﻿@model Dtos.OrderProcess.OrderInputModel
 
 @inject IStringLocalizer<SharedResources> sharedLocalizer
+@inject IHttpContextAccessor httpAccessor
+
+@{
+    var userSessionValue = httpAccessor.HttpContext.Session.GetString("__UserSession");
+    var userSession = JsonConvert.DeserializeObject<UserSession>(userSessionValue);
+}
 
 <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
     <div class="navbar-brand">@sharedLocalizer["Order"] </div>
+
+    @if (Model.Status == (int)ERP.Common.Enumerations.OrderStatus.InProcess)
+    {
+        <form asp-action="Send">
+            <input type="hidden" asp-for="ID" />
+            <input type="submit" value="@sharedLocalizer["Send"]" class="btn btn-warning" />
+        </form>
+    }
+
+    @if (Model.Status == (int)ERP.Common.Enumerations.OrderStatus.Sent && userSession.OrganizationID != Model.OrganizationID)
+    {
+        <form asp-action="Reject">
+            <input type="hidden" asp-for="ID" />
+            <input type="submit" value="@sharedLocalizer["Reject"]" class="btn btn-warning" />
+        </form>
+    }
+
+    @if (Model.Status == (int)ERP.Common.Enumerations.OrderStatus.Sent && userSession.OrganizationID != Model.OrganizationID)
+    {
+        <form asp-action="Confirm">
+            <input type="hidden" asp-for="ID" />
+
+            <input type="submit" value="@sharedLocalizer["Confirm"]" class="btn btn-warning" />
+        </form>
+    }
+
+
 </nav>
+
+
 
 <div class="row">
     <div class="col-md-4">
@@ -15,8 +50,18 @@
             @Html.EditorForModel("OrderEdit")
 
             <div class="form-group">
-                <input type="submit" value="@sharedLocalizer["Save"]" class="btn btn-success" />
-                <a asp-action="Index" class="btn btn-light">@sharedLocalizer["BackToList"]</a>
+                @if (Model.Status == (int)ERP.Common.Enumerations.OrderStatus.InProcess)
+                {
+                    <input type="submit" value="@sharedLocalizer["Save"]" class="btn btn-success" />
+                }
+                @if (userSession.OrganizationID != Model.OrganizationID)
+                {
+                    <a asp-action="SalesIndex" class="btn btn-light">@sharedLocalizer["BackToList"]</a>
+                }
+                else
+                {
+                    <a asp-action="Index" class="btn btn-light">@sharedLocalizer["BackToList"]</a>
+                }
             </div>
         </form>
     </div>

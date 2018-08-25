@@ -369,4 +369,7 @@
   <data name="SalesOrder" xml:space="preserve">
     <value>Sales Order</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
 </root>

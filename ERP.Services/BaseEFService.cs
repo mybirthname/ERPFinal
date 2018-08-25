@@ -92,6 +92,7 @@ namespace ERP.Services
 
             instance.UpdateBy = userSession.UserFullName;
             instance.UpdateDate = DateTimeService.ProvideDateTime();
+            instance.OrganizationID = userSession.OrganizationID;
         }
 
         public virtual void SetBaseModelFieldOnDelete(BaseModel instance)
@@ -100,6 +101,7 @@ namespace ERP.Services
 
             instance.UpdateBy = userSession.UserFullName;
             instance.UpdateDate = DateTimeService.ProvideDateTime();
+            instance.OrganizationID = userSession.OrganizationID;
             instance.Deleted = 1;
         }
     }

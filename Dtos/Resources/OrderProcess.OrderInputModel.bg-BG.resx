@@ -132,11 +132,17 @@
   <data name="_DeliveryDate" xml:space="preserve">
     <value>Дата на получаване</value>
   </data>
+  <data name="_DeliveryDateRequired" xml:space="preserve">
+    <value>Полето дата на доставка е задължително</value>
+  </data>
   <data name="_Description" xml:space="preserve">
     <value>Описание</value>
   </data>
   <data name="_DescriptionRequired" xml:space="preserve">
     <value>Описанието е задължително поле.</value>
+  </data>
+  <data name="_FieldInPast" xml:space="preserve">
+    <value>Датата не може да е в миналото</value>
   </data>
   <data name="_InProcess" xml:space="preserve">
     <value>В процес на създаване</value>
@@ -146,6 +152,18 @@
   </data>
   <data name="_NrInternRequired" xml:space="preserve">
     <value>Номерът е задължително поле.</value>
+  </data>
+  <data name="_Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="_PriceRequired" xml:space="preserve">
+    <value>Цената е задължително поле</value>
+  </data>
+  <data name="_Quantity" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="_QuantityRequired" xml:space="preserve">
+    <value>Количеството е задължително поле</value>
   </data>
   <data name="_Rejected" xml:space="preserve">
     <value>Отхвърлена</value>
@@ -164,6 +182,9 @@
   </data>
   <data name="_SupplierName" xml:space="preserve">
     <value>Доставчик</value>
+  </data>
+  <data name="_SupplierRequired" xml:space="preserve">
+    <value>Доставчика е задължително поле</value>
   </data>
   <data name="_Title" xml:space="preserve">
     <value>Заглавие</value>

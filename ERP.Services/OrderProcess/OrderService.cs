@@ -37,8 +37,16 @@ namespace ERP.Services.OrderProcess
 
         public async Task CreateNewRecord(OrderInputModel model)
         {
+
             var instance = Mapper.Map<Order>(model);
             SetBaseModelFieldsOnCreate(instance);
+
+            var supplier = await DbContext.Suppliers.FirstOrDefaultAsync(x => x.ID == model.SupplierID);
+
+            if (supplier != null)
+                instance.SupplierOrganizationID = supplier.SupplierOrganizationID;
+
+            instance.AmountNet = instance.Price * instance.Quantity;
 
             await DbContext.Orders.AddAsync(instance);
             await DbContext.SaveChangesAsync();
@@ -77,21 +85,18 @@ namespace ERP.Services.OrderProcess
 
         public async Task<OrderInputModel> GetByID(Guid id)
         {
+
             var result = await (from item in DbContext.Orders
                          join org in DbContext.Organizations on item.OrganizationID equals org.ID
-                         join suppOrg in DbContext.Organizations on item.SupplierOrganizationID equals suppOrg.ID into SupplierOrg
-                         from supp in SupplierOrg.DefaultIfEmpty()
                          where item.ID == id
                          select new 
                          {
                              OrderInstance = item,
                              CompanyName = org.Title,
-                             SupplierName = supp.Title
                          }).FirstOrDefaultAsync();
 
             var instance = this.Mapper.Map<OrderInputModel>(result.OrderInstance);
             instance.CompanyName = result.CompanyName;
-            instance.SupplierName = result.SupplierName;
 
             string key = StatusTexts[result.OrderInstance.Status];
             instance.StatusText = _localizedString[key];
@@ -101,10 +106,15 @@ namespace ERP.Services.OrderProcess
 
         public async Task UpdateRecord(OrderInputModel inputModel)
         {
-            var order = await DbContext.Orders.FirstOrDefaultAsync(m => m.ID == inputModel.ID);
+            var order = await DbContext.Orders.FirstOrDefaultAsync(x => x.ID == inputModel.ID);
 
             Mapper.Map<OrderInputModel, Order>(inputModel, order);
+
             SetBaseModelFieldOnUpdate(order);
+            order.AmountNet = order.Price * order.Quantity;
+
+            var supplier = await DbContext.Suppliers.FirstOrDefaultAsync(x => x.ID == order.SupplierID);
+            order.SupplierOrganizationID = supplier.SupplierOrganizationID;
 
             DbContext.Attach(order).State = EntityState.Modified;
             await DbContext.SaveChangesAsync();
@@ -116,7 +126,7 @@ namespace ERP.Services.OrderProcess
 
             var orders = await DbContext.Orders
                 .Where(x => 
-                        x.OrganizationID == userSession.OrganizationID && 
+                        x.SupplierOrganizationID == userSession.OrganizationID && 
                         x.Deleted == 0 && 
                         x.Status > (int)Enumerations.OrderStatus.InProcess)
                 .ToListAsync();
@@ -131,6 +141,20 @@ namespace ERP.Services.OrderProcess
                         x.OrganizationID == userSession.OrganizationID &&
                         x.Deleted == 0 &&
                         (x.Title.Contains(searchTerm) || x.NrIntern.Contains(searchTerm))).ToListAsync();
+
+            return result;
+        }
+
+        public async Task<OrderInputModel> SetStatus(int status, Guid id)
+        {
+            var item = await DbContext.Orders.FirstOrDefaultAsync(x => x.ID == id);
+            item.Status = status;
+
+            DbContext.Attach(item).State = EntityState.Modified;
+            await DbContext.SaveChangesAsync();
+
+
+            var result = await GetByID(id);
 
             return result;
         }

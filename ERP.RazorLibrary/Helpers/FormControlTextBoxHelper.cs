@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
 namespace ERP.RazorLibrary.Helpers
 {
-    [HtmlTargetElement("form-control-select-list")]
-    public class FormControlDropDownHelper : TagHelper
+    [HtmlTargetElement("form-control-text-box")]
+    public class FormControlTextBoxHelper:TagHelper
     {
         [HtmlAttributeName("asp-for")]
         public ModelExpression For { get; set; }
@@ -17,15 +18,15 @@ namespace ERP.RazorLibrary.Helpers
         [HtmlAttributeName("asp-disabled")]
         public bool Disabled { get; set; }
 
-        [HtmlAttributeName("asp-list")]
-        public SelectList ItemList { get; set; }
+        [HtmlAttributeName("asp-type")]
+        public string TypeValue { get; set; } = "text";
 
         private readonly IHtmlGenerator _generator;
 
         [ViewContext]
         public ViewContext ViewContext { get; set; }
 
-        public FormControlDropDownHelper(IHtmlGenerator generator)
+        public FormControlTextBoxHelper(IHtmlGenerator generator)
         {
             _generator = generator;
         }
@@ -48,24 +49,22 @@ namespace ERP.RazorLibrary.Helpers
                 object htmlAttributes = null;
                 if(Disabled)
                 {
-                    htmlAttributes = new { @class = "form-control", @disabled = "disabled" };
+                    htmlAttributes = new { @class = "form-control", @disabled = "disabled", @type = TypeValue };
                 }
                 else
                 {
-                    htmlAttributes = new { @class = "form-control" };
+                    htmlAttributes = new { @class = "form-control", @type = TypeValue };
                 }
 
 
-                var selectList = _generator.GenerateSelect(
-                                    ViewContext, 
+                var textBox = _generator.GenerateTextBox(ViewContext, 
                                     For.ModelExplorer, 
-                                    "---", 
-                                    For.Name, 
-                                    ItemList, 
-                                    false, 
+                                    For.Name,
+                                    GetTextBoxValue(), 
+                                    null,
                                     htmlAttributes);
 
-                selectList.WriteTo(writer, NullHtmlEncoder.Default);
+                textBox.WriteTo(writer, NullHtmlEncoder.Default);
 
                 var validationMsg = _generator.GenerateValidationMessage(           
                                         ViewContext, 
@@ -84,5 +83,22 @@ namespace ERP.RazorLibrary.Helpers
             }
 
         }
+
+        private object GetTextBoxValue()
+        {
+            var value = For.Model;
+            if (TypeValue == "date" && For.Model != null)
+            {
+                value = DateTime.Parse(For.Model.ToString()).ToString("yyyy-MM-dd");
+            }
+            else if(For.Model != null && TypeValue == "number")
+            {
+                value = decimal.Parse(For.Model.ToString(), CultureInfo.InvariantCulture);
+            }
+
+            return value;
+        }
+
+
     }
 }

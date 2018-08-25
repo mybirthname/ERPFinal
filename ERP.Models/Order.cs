@@ -11,6 +11,8 @@ namespace ERP.Models
         {
             AmountNet = 0;
             Status = 5;
+            Price = 0;
+            Quantity = 1;
         }
 
         [Required]
@@ -31,12 +33,20 @@ namespace ERP.Models
 
         [Range(0, int.MaxValue)]
         [Display(Name ="_AmountNet")]
-        public decimal AmountNet { get; set; }
+        public int AmountNet { get; set; }
 
         public Guid? SupplierOrganizationID { get; set; }
 
         public Guid? SupplierID { get; set; }
 
+        [Required]
+        [Range(0, int.MaxValue)]
+        public int Quantity { get; set; }
+
+        [Required]
+        [Range(0, int.MaxValue)]
+        public int Price { get; set; }
+        
         [DataType(DataType.Date)]
         public DateTime? DeliveryDate { get; set; }
 
