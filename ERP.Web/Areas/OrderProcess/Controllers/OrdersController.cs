@@ -32,8 +32,26 @@ namespace ERP.Web.Areas.OrderProcess.Controllers
             return View(model);
         }
 
-        public IActionResult Create()
+        [HttpPost]
+        public async Task<IActionResult> Search(string searchTerm)
         {
+            var model = await _service.GetFilterRecords(searchTerm);
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> SalesIndex()
+        {
+            var model = await _service.GetAllSalesRecords();
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            var suppliers = await _service.GetSupplierAsync();
+            ViewBag.Suppliers = new SelectList(suppliers, "ID", "Title");
+
             return View();
         }
 
@@ -47,11 +65,14 @@ namespace ERP.Web.Areas.OrderProcess.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: OrderProcess/Orders/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
                 return NotFound();
+
+            var suppliers = await _service.GetSupplierAsync();
+
+            ViewBag.Suppliers = new SelectList(suppliers, "ID", "Title");
 
             var order = await _service.GetByID(id.Value);
 

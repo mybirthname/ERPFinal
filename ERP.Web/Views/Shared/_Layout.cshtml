@@ -69,6 +69,11 @@
                                 <a class="dropdown-item" asp-area="OrderProcess" asp-controller="Invoices" asp-action="Index">@sharedLocalizer["Invoice"]</a>
                                 <div class="dropdown-divider"></div>
                             }
+                            @if (seeOrder)
+                            {
+                                <a class="dropdown-item" asp-area="OrderProcess" asp-controller="Orders" asp-action="SalesIndex">@sharedLocalizer["SalesOrder"]</a>
+                                <div class="dropdown-divider"></div>
+                            }
                         </div>
                     </li>
                 }

@@ -10,6 +10,7 @@ namespace ERP.Models
         public Order()
         {
             AmountNet = 0;
+            Status = 5;
         }
 
         [Required]
@@ -25,6 +26,7 @@ namespace ERP.Models
         public DateTime? SendDate { get; set; }
 
         [Display(Name ="_Status")]
+        [Range(FieldLengthConstants.StatusMinValue, FieldLengthConstants.StatusMaxValue)]
         public int Status { get; set; }
 
         [Range(0, int.MaxValue)]
@@ -35,6 +37,7 @@ namespace ERP.Models
 
         public Guid? SupplierID { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? DeliveryDate { get; set; }
 
         public string AttachmentPath { get; set; }

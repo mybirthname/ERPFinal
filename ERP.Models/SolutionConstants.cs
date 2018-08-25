@@ -20,5 +20,8 @@ namespace ERP.Common.ModelConstants
 
         public const int CultureLength = 5;
 
+        public const int StatusMinValue = 5;
+        public const int StatusMaxValue = 100;
+
     }
 }

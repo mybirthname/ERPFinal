@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using Dtos.User;
 using ERP.Services.Interfaces;
+using ERP.Common;
+using Newtonsoft.Json;
 
 namespace ERP.Web.Areas.Identity.Pages.Account
 {
@@ -81,12 +83,14 @@ namespace ERP.Web.Areas.Identity.Pages.Account
                     );
 
                     var userRecord = _signInManager.UserManager.Users.FirstOrDefault(x=> x.Email == Input.Email);
-                    var organization = await _organizationService.GetOrganizationByID(userRecord.OrganizationID);
 
-                    //_httpContextAccessor.HttpContext.Session.SetInt32("OrganizationID", userRecord.OrganizationID);
-                    //_httpContextAccessor.HttpContext.Session.SetString("UserID", userRecord.Id);
+                    UserSession userSession = new UserSession();
+                    userSession.OrganizationID = userRecord.OrganizationID;
+                    userSession.UserID = userRecord.Id;
+                    userSession.UserFullName = userRecord.LastName + ", " + userRecord.FirstName;
 
-                    //_httpContextAccessor.HttpContext.Session.
+                    var json = JsonConvert.SerializeObject(userSession);
+                    _httpContextAccessor.HttpContext.Session.SetString("__UserSession", json);
 
                     return LocalRedirect(returnUrl);
                 }

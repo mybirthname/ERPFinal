@@ -372,4 +372,7 @@
   <data name="Orders" xml:space="preserve">
     <value>Поръчки</value>
   </data>
+  <data name="SalesOrder" xml:space="preserve">
+    <value>Търговска поръчка</value>
+  </data>
 </root>

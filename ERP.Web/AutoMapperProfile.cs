@@ -21,7 +21,8 @@ namespace Common
             this.CreateMap<CustomerInputeModel, Customer>().ReverseMap();
             this.CreateMap<SupplierInputModel, Supplier>().ReverseMap();
             this.CreateMap<OrganizationInputeModel, Organization>().ReverseMap();
-            this.CreateMap<OrderInputModel, Order>().ReverseMap();
+
+            this.CreateMap<OrderInputModel, Order>().ForMember(x => x.CreateBy, opt => opt.Ignore()).ReverseMap();
 
             this.CreateMap<CustomerInputeModel, Organization>().ForMember(x => x.ID, opt => opt.Ignore());
             this.CreateMap<SupplierInputModel, Organization>().ForMember(x => x.ID, opt => opt.Ignore());

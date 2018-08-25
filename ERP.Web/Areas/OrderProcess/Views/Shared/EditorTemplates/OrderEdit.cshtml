@@ -1,10 +1,41 @@
 ﻿@model Dtos.OrderProcess.OrderInputModel
 
+@{ 
+    var disabled = false;
 
-<form-control-text-box asp-for="NrIntern"></form-control-text-box>
-<form-control-text-box asp-for="Title"></form-control-text-box>
-<form-control-text-area asp-for="Description"></form-control-text-area>
-<form-control-text-box asp-for="Remark"></form-control-text-box>
+    if (Model != null && Model.Status > (int)ERP.Common.Enumerations.OrderStatus.InProcess)
+    {
+        disabled = true;
+    }
+}
+
+
+@if (Model != null && Model.CompanyName != null)
+{
+    <form-control-text-box asp-for="CompanyName" asp-disabled="true"></form-control-text-box>
+}
+
+<form-control-text-box asp-for="NrIntern" asp-disabled="@disabled"></form-control-text-box>
+<form-control-text-box asp-for="Title" asp-disabled="@disabled"></form-control-text-box>
+<form-control-text-box asp-for="StatusText" asp-disabled="true"></form-control-text-box>
+<form-control-text-box asp-for="CreateBy" asp-disabled="true"></form-control-text-box>
+<form-control-text-area asp-for="Description" asp-disabled="@disabled"></form-control-text-area>
+
+<form-control-select-list asp-for="SupplierID" asp-list="ViewBag.Suppliers" asp-disabled="@disabled"></form-control-select-list>
+
+@if (Model != null && Model.SendDate != null)
+{
+    <form-control-text-box asp-for="SendDate" asp-disabled="true" asp-type="date"></form-control-text-box>
+}
+
+@if (Model != null && Model.AmountNet != 0)
+{
+    <form-control-text-box asp-for="AmountNet" asp-disabled="true"></form-control-text-box>
+}
+
+<form-control-text-box asp-for="DeliveryDate" asp-type="date" asp-disabled="@disabled"></form-control-text-box>
+
+<form-control-text-box asp-for="Remark" asp-disabled="@disabled"></form-control-text-box>
 
 
 

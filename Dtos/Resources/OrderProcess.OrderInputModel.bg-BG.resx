@@ -117,11 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="_AmountNet" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="_CompanyName" xml:space="preserve">
+    <value>Поръчител</value>
+  </data>
+  <data name="_Confirm" xml:space="preserve">
+    <value>Потвърдена</value>
+  </data>
+  <data name="_CreateBy" xml:space="preserve">
+    <value>Създател</value>
+  </data>
+  <data name="_DeliveryDate" xml:space="preserve">
+    <value>Дата на получаване</value>
+  </data>
   <data name="_Description" xml:space="preserve">
     <value>Описание</value>
   </data>
   <data name="_DescriptionRequired" xml:space="preserve">
     <value>Описанието е задължително поле.</value>
+  </data>
+  <data name="_InProcess" xml:space="preserve">
+    <value>В процес на създаване</value>
   </data>
   <data name="_NrIntern" xml:space="preserve">
     <value>Номер</value>
@@ -129,8 +147,23 @@
   <data name="_NrInternRequired" xml:space="preserve">
     <value>Номерът е задължително поле.</value>
   </data>
+  <data name="_Rejected" xml:space="preserve">
+    <value>Отхвърлена</value>
+  </data>
   <data name="_Remark" xml:space="preserve">
     <value>Забележка</value>
+  </data>
+  <data name="_Sent" xml:space="preserve">
+    <value>Изпратена</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="_Supplier" xml:space="preserve">
+    <value>Доставчик</value>
+  </data>
+  <data name="_SupplierName" xml:space="preserve">
+    <value>Доставчик</value>
   </data>
   <data name="_Title" xml:space="preserve">
     <value>Заглавие</value>

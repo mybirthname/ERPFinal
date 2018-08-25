@@ -17,8 +17,8 @@ namespace ERP.RazorLibrary.Helpers
         [HtmlAttributeName("rows")]
         public int Rows { get; set; }
 
-        [HtmlAttributeName("disabled")]
-        public string Disabled { get; set; }
+        [HtmlAttributeName("asp-disabled")]
+        public bool Disabled { get; set; }
 
         private readonly IHtmlGenerator _generator;
 
@@ -44,10 +44,10 @@ namespace ERP.RazorLibrary.Helpers
                 var rows = Rows == 0 ? 8 : Rows;
                 object htmlAttributes = null;
 
-                if(string.IsNullOrEmpty(Disabled))
-                    htmlAttributes = new { @class = "form-control" };
+                if(!Disabled)
+                    htmlAttributes = new { @class = "form-control"};
                 else
-                    htmlAttributes = new { @class = "form-control", @disabled = Disabled };
+                    htmlAttributes = new { @class = "form-control", @disabled = "disabled" };
 
                 var textArea = _generator.GenerateTextArea(ViewContext, For.ModelExplorer, For.Name, rows, 100, htmlAttributes);
                 textArea.WriteTo(writer, NullHtmlEncoder.Default);

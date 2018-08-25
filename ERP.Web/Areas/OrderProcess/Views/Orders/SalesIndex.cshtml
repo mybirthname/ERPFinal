@@ -7,10 +7,8 @@
 @inject IStringLocalizer<SharedResources> sharedLocalizer
 
 <nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-bottom:15px;">
-    <div class="navbar-brand">@sharedLocalizer["Orders"] </div>
-    <partial name="_SearchPartial" />
+    <div class="navbar-brand">@sharedLocalizer["SalesOrder"] </div>
 </nav>
-
 
 <table class="table table-bordered table-striped">
     <thead>
@@ -33,13 +31,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.AmountNet)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-        @Html.DisplayForModel("OrderList")
+        @Html.DisplayForModel("SalesOrderList")
     </tbody>
 </table>
 
-<a asp-area="OrderProcess" asp-controller="Orders" asp-action="Create" class="btn btn-primary">@sharedLocalizer["CreateOrder"]</a>
 

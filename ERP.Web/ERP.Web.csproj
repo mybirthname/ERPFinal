@@ -46,6 +46,15 @@
     <Content Update="Areas\Administration\Pages\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\OrderProcess\Views\Orders\Search.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\OrderProcess\Views\Orders\SalesIndex.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\OrderProcess\Views\Shared\DisplayTemplates\SalesOrderList.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\OrderProcess\Views\Shared\DisplayTemplates\OrderList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
