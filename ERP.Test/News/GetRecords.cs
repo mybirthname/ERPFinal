@@ -17,7 +17,7 @@ namespace ERP.Test.News
     {
 
         [TestMethod]
-        public async Task GetCoursesForOrganizationAsync_WithAFiveCourses_ReturnThree()
+        public async Task GetSpecificNewsForOrganization()
         {
             var dbContext = Helper.GetDBInMemory();
             DateTimeService service = new DateTimeService();

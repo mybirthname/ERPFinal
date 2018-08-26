@@ -47,7 +47,7 @@ namespace ERP.Test
             sessionMock.Setup(x => x.Set("__UserSession", It.IsAny<byte[]>()))
                 .Callback<string, byte[]>((k, v) => v = value);
 
-            sessionMock.Setup(_ => _.TryGetValue("__UserSession", out value))
+            sessionMock.Setup(x => x.TryGetValue("__UserSession", out value))
                 .Returns(true);
 
             httpContext.Session = sessionMock.Object;
