@@ -10,11 +10,9 @@ namespace ERP.Data
 {
     public class ERPContext: IdentityDbContext<User, Role, string, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
-        public SqlDatabaseOptions SqlDbOptions { get; set; }
 
-        public ERPContext(IOptions<SqlDatabaseOptions> databaseOptions) :base()
+        public ERPContext(DbContextOptions<ERPContext> databaseOptions) :base(databaseOptions)
         {
-            SqlDbOptions = databaseOptions.Value;
         }
 
         public DbSet<Customer> Customers { get; set; }
@@ -29,16 +27,6 @@ namespace ERP.Data
         public DbSet<News> News { get; set; }
 
         public DbSet<IdentityUserClaim<Guid>> IdentityUserClaims { get; set; } //-> bug which is workarounded with this line https://github.com/aspnet/Identity/issues/1802
-
-        protected override void OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(SqlDbOptions.ConnectionString);
-            }
-
-            base.OnConfiguring(optionsBuilder);
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

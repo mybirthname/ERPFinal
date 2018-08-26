@@ -55,12 +55,8 @@ namespace ERP.Web
 
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(120));
 
-            services.Configure<SqlDatabaseOptions>(option =>
-            {
-                option.ConnectionString = Configuration.GetConnectionString("SqlServerConnectionString");
-            });
 
-            services.AddDbContext<ERPContext>();
+            services.AddDbContext<ERPContext>(options=> options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnectionString")));
 
             AddIdentityServices(services);
 
