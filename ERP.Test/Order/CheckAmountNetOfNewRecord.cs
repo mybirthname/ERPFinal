@@ -20,6 +20,7 @@ namespace ERP.Test.Order
         private readonly int quantity = 5;
         private readonly int price = 15;
 
+        [TestMethod]
         public async Task CheckAmontNet()
         {
             var dbContext = Helper.GetDBInMemory();
