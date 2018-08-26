@@ -1,8 +1,9 @@
-﻿using Common;
+﻿using Dtos.Administration.News;
 using ERP.Common;
 using ERP.Data;
 using ERP.Services;
 using ERP.Services.Administration;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,10 @@ using System.Threading.Tasks;
 namespace ERP.Test.News
 {
     [TestClass]
-    public class GetByID
+    public class UpdateRecord
     {
         [TestMethod]
-        public async Task GetSpecificRecord()
+        public async Task UpdateSpecificRecord()
         {
             var dbContext = Helper.GetDBInMemory();
             DateTimeService service = new DateTimeService();
@@ -26,10 +27,19 @@ namespace ERP.Test.News
             Guid id = await SetUpData(userSession, dbContext);
 
             var news = new NewsService(dbContext, AutoMapper.Mapper.Instance, accessor, service);
-            var result = await news.GetNewsByID(id);
+            var updatedData = GetInputModel(id);
+            await news.UpdateRecord(updatedData);
 
-            Assert.AreEqual(id, result.ID);
+            var record = await dbContext.News.FirstOrDefaultAsync(x => x.ID == id);
 
+            Assert.AreEqual(updatedData.NrIntern, record.NrIntern);
+            Assert.AreEqual(updatedData.Title, record.Title);
+        }
+
+        private NewsInputModel GetInputModel(Guid id)
+        {
+            var model = new NewsInputModel() { ID = id, NrIntern = "Test Change", Title="Test Change" };
+            return model;
         }
 
         private async Task<Guid> SetUpData(UserSession userSession, ERPContext dbContext)

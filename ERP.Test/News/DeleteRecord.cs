@@ -1,5 +1,4 @@
-﻿using Common;
-using ERP.Common;
+﻿using ERP.Common;
 using ERP.Data;
 using ERP.Services;
 using ERP.Services.Administration;
@@ -13,10 +12,11 @@ using System.Threading.Tasks;
 namespace ERP.Test.News
 {
     [TestClass]
-    public class GetByID
+    public class DeleteRecord
     {
+
         [TestMethod]
-        public async Task GetSpecificRecord()
+        public async Task DeleteSpecificRecord()
         {
             var dbContext = Helper.GetDBInMemory();
             DateTimeService service = new DateTimeService();
@@ -26,10 +26,9 @@ namespace ERP.Test.News
             Guid id = await SetUpData(userSession, dbContext);
 
             var news = new NewsService(dbContext, AutoMapper.Mapper.Instance, accessor, service);
-            var result = await news.GetNewsByID(id);
+            await news.DeleteRecord(id);
 
-            Assert.AreEqual(id, result.ID);
-
+            Assert.AreEqual(0, dbContext.News.Where(x=> x.Deleted == 0).Count());
         }
 
         private async Task<Guid> SetUpData(UserSession userSession, ERPContext dbContext)

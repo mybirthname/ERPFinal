@@ -19,7 +19,6 @@ namespace ERP.Test.News
         public async Task AddOneRecord()
         {
             var dbContext = Helper.GetDBInMemory();
-            AutoMapper.Mapper.Initialize(config => config.AddProfile<AutoMapperProfile>());
             DateTimeService service = new DateTimeService();
             var userSession = Helper.SetUserSession();
             var accessor = Helper.SetUpHttpContextAccessor(userSession);

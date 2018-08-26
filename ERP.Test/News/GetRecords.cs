@@ -10,16 +10,16 @@ using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
-namespace ERP.Test
+namespace ERP.Test.News
 {
     [TestClass]
     public class GetRecords
     {
+
         [TestMethod]
         public async Task GetCoursesForOrganizationAsync_WithAFiveCourses_ReturnThree()
         {
             var dbContext = Helper.GetDBInMemory();
-            AutoMapper.Mapper.Initialize(config => config.AddProfile<AutoMapperProfile>());
             DateTimeService service = new DateTimeService();
             var userSession = Helper.SetUserSession();
             var accessor = Helper.SetUpHttpContextAccessor(userSession);
